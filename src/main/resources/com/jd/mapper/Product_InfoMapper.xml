@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jd.mapper.Product_InfoMapper">
-  <resultMap id="BaseResultMap" type="com.jd.enity.Product_Info">
+  <resultMap id="Product_InfoResultMap" type="com.jd.enity.Product_Info">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="title" jdbcType="VARCHAR" property="title" />
@@ -14,7 +14,7 @@
   <sql id="Base_Column_List">
     id, name, title, create_time, min_price, discount, warranty_data, status_id
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="Product_InfoResultMap">
     select 
     <include refid="Base_Column_List" />
     from Product_Info

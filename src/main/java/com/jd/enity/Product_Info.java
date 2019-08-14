@@ -20,6 +20,20 @@ public class Product_Info {
 
     private Integer status_id;
 
+    @Override
+    public String toString() {
+        return "Product_Info{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", title='" + title + '\'' +
+                ", create_time=" + create_time +
+                ", min_price=" + min_price +
+                ", discount='" + discount + '\'' +
+                ", warranty_data=" + warranty_data +
+                ", status_id=" + status_id +
+                '}';
+    }
+
     public Integer getId() {
         return id;
     }

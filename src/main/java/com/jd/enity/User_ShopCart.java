@@ -11,6 +11,17 @@ public class User_ShopCart {
 
     private Integer amount;
 
+    @Override
+    public String toString() {
+        return "User_ShopCart{" +
+                "id=" + id +
+                ", user_id=" + user_id +
+                ", produce_id=" + produce_id +
+                ", pversion_id=" + pversion_id +
+                ", amount=" + amount +
+                '}';
+    }
+
     public Integer getId() {
         return id;
     }

@@ -11,13 +11,50 @@ public class Address_Info {
 
     private String phone;
 
-    private Integer province;
-
-    private Integer city;
-
-    private String area;
+    private Address_Province address_province;
+    private Address_City address_city;
+    private Address_Area address_area;
 
     private String address;
+
+    @Override
+    public String toString() {
+        return "Address_Info{" +
+                "id=" + id +
+                ", user_id=" + user_id +
+                ", receiver='" + receiver + '\'' +
+                ", zipcode=" + zipcode +
+                ", phone='" + phone + '\'' +
+                ", address_province=" + address_province +
+                ", address_city=" + address_city +
+                ", address_area=" + address_area +
+                ", address='" + address + '\'' +
+                '}';
+    }
+
+    public Address_Province getAddress_province() {
+        return address_province;
+    }
+
+    public void setAddress_province(Address_Province address_province) {
+        this.address_province = address_province;
+    }
+
+    public Address_City getAddress_city() {
+        return address_city;
+    }
+
+    public void setAddress_city(Address_City address_city) {
+        this.address_city = address_city;
+    }
+
+    public Address_Area getAddress_area() {
+        return address_area;
+    }
+
+    public void setAddress_area(Address_Area address_area) {
+        this.address_area = address_area;
+    }
 
     public Integer getId() {
         return id;
@@ -57,30 +94,6 @@ public class Address_Info {
 
     public void setPhone(String phone) {
         this.phone = phone == null ? null : phone.trim();
-    }
-
-    public Integer getProvince() {
-        return province;
-    }
-
-    public void setProvince(Integer province) {
-        this.province = province;
-    }
-
-    public Integer getCity() {
-        return city;
-    }
-
-    public void setCity(Integer city) {
-        this.city = city;
-    }
-
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
-        this.area = area == null ? null : area.trim();
     }
 
     public String getAddress() {

@@ -1,7 +1,9 @@
 package com.jd.mapper;
 
 import com.jd.enity.Product_Version;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface Product_VersionMapper {
     int deleteByPrimaryKey(Integer id);
 
