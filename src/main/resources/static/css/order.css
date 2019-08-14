@@ -10,7 +10,7 @@ a{text-decoration: none; }
 .top{width: 100%; height: 150px; margin-right: 200px; margin-left: 200px;}
 .top-img img{height: 120px;}
 
-.order{width: 1120px; height: auto; margin-right: 200px; margin-left: 200px; border-color: #999999; border-style: solid; border-width: 0.7px; margin-top: 15px;}
+.order{width: 1120px; height: auto; margin-right: 200px; margin-left: 200px; border-color: #999999; border-style: solid; border-width: 0.7px; margin-top: 15px; float: left}
 .receiver{width: 1120px; height: auto;}
 .bluefont{font-size: 13px; color: blue;}
 .bluefont a{text-decoration: none;}
@@ -24,16 +24,23 @@ a{text-decoration: none; }
 .choose-pay{margin-top: 10px; margin-left: 40px; height: 45px;}
 .choose-pay input{border-color: #666666; width: 50px; height: 30px; height: 18px; color: black; line-height: 30px}
 
-.express-list{height: auto; width: 1120px; margin-top: 10px}
-.express{height: auto; width: 371px; clear: left; margin-left: 35px; background-color: #cccccc}
-.product{height: auto; width: 680px; background-color: lightblue; position: absolute; top: 522.5px; left: 610px}
+.express-list{height: auto; width: 1120px; margin-top: 10px; background-color: #c3e6cb}
+.express{height: 527px; width: 371px; clear: left; margin-left: 35px; background-color: #cccccc; float: left}
+.product{height: auto; width: 680px; background-color: #d1ecf1; float: left}
 
 .list-blackfont{color: #666666; font-size: 14px; line-height: 40px; margin-left: 25px; margin-top: 20px; font-weight: bold}
 .thwy input{width: 50px; font-size: 14px; color: #666666}
 
+.goods-item{width: 780px}
+.product-goods{height: 170px; width: 840px;}
+.product-descrip{height: 160px; width: 270px; float: left; font-size: 14px; padding: 20px 20px 20px 0px}
+.product-price{padding: 20px 0px 0px 0px; width: 80px; height: 160px; float: left}
+.product-descrip-price{color: red; font-size: 16px; font-weight: bold; margin-left: 10px;}
+.product-descrip-weight{font-size: 13px; margin-left: 20px; text-align: center; margin-top: 5px}
+.product-count{width: 50px; padding: 20px 30px 0px 0px; float: left; margin-left: 60px; font-size: 14px;}
+.product-status{width: 80px; padding: 20px 30px 0px 0px; float: left; margin-left: 10px; font-size: 14px;}
 
-
-
+.discount{float: left; clear: left}
 
 
 

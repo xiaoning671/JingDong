@@ -94,32 +94,35 @@
             <input type="radio" name="payment" value="ylzf">银联支付
         </div>
     </div>
-    <hr width="75%" style="color: #a7a7a7; margin: 10px 200px 10px auto;">
-    <div class="product-list">
+    <div class="hr"></div>
+    <div class="product-list" style="margin-top: 20px">
         <div class="orderhead">
             <span style="margin-left: 40px; line-height: 40px" class="blackfont">送货清单（暂时只支持京东自营商品）</span>
             <a href="#"><span style="margin-left: 500px; line-height: 40px" class="bluefont"><img src="../images/order/order-1.png" height="16px" style="margin-top: 5px">价格说明</span></a>
             <a href="#"><span style="margin-left: 46px; line-height: 40px" class="bluefont">返回修改购物车</span></a>
         </div>
         <div class="express-list">
-            <div class="express">
+            <div class="express">1
                 <div class="kdgs">
                     <div class="listhead">
                         <span class="list-blackfont">配送方式</span>
                         <a href="#"><span style="margin-left: 190px; line-height: 40px" class="bluefont">对应商品</span></a>
                     </div>
-                    <select class="select-addr" style="margin-left: 30px">
-                        <option>顺丰快递</option>
-                        <option>京东快递</option>
-                        <option>韵达快递</option>
-                    </select>
+                    <div style="height: 30px">
+                        <select class="select-addr" style="margin-left: 30px">
+                            <option>顺丰快递</option>
+                            <option>京东快递</option>
+                            <option>韵达快递</option>
+                        </select>
+                    </div>
+
                     <hr width="0px"><br>
                     <span style="margin-left: 30px; font-size: 13px; color: #999999;">配送时间：</span>
                     <span style="margin-left: 10px; font-size: 13px; color: #666666;">工作日、双休日与节假日均可送货</span>
                 </div>
                 <hr width="250" style="color: #a7a7a7;">
                 <div class="thwy">
-                    <input type="checkbox" name="thwychoose" value="1" style="margin-left: 10px; font-size: 14px; line-height: 40px">退换无忧
+                    <input id="vender_0" type="checkbox" class="mr5 buyer_freight_insurance" onclick="selectBuyerFreightInsurance(this, 0)" >退换无忧
                     <span style="margin-left: 15px; color: red" class="bluefont">￥0.5</span><br><br>
                     <div style="margin-left: 25px; width: 300px; height: auto">
                         <span style="font-size: 13px; color: #666666;">注：自签收7天内退货、15天内换货，可享受一次上门取件服务。</span>
@@ -129,18 +132,136 @@
                 </div>
                 <hr width="250" style="color: #a7a7a7;">
                 <div class="weight">
-                    <span style="margin-left: 40px; font-size: 15px; color: #666666; ">总重量：</span>
-                    <span style="margin-left: 10px; font-size: 15px; color: #999999; ">7.777kg</span>
+                    <span style="margin-left: 40px; font-size: 14px; color: #666666; ">总重量：</span>
+                    <span style="margin-left: 10px; font-size: 14px; color: #999999; ">7.777kg</span>
                 </div>
             </div>
             <div class="product">
-
+                <div style="font-weight: bold; margin-left: 15px; font-size: 13px">商家：京东自营</div>
+                <div class="product-goods">
+                    <img height="140px" style="float: left; padding: 30px 30px 20px 20px" src="https://img14.360buyimg.com/N4/jfs/t1/43583/36/281/722147/5cc15b5aEd70dae6c/fc7496beccf95f8a.jpg">
+                    <div class="product-descrip">
+                        <div class="product-title">英特尔（Intel）i9-9900k 酷睿八核 盒装CPU处理器</div><br>
+                        <div style="font-weight: bold; float: left">颜色：<div style="float:right; font-weight: normal; width:150px;  text-overflow:ellipsis; white-space:nowrap; overflow:hidden;">i9-9900K★3.6GHz★8核16线程</div></div>
+                        <div style="margin-top:15px; font-weight: bold; float: left">尺码：<div style="float:right; font-weight: normal; width:150px;  text-overflow:ellipsis; white-space:nowrap; overflow:hidden;">盒装国行解锁版</div></div><br>
+                        <div style="color: #0f6674; float: left; font-size: 14px; margin-top: 10px">支持7天无理由退货</div>
+                    </div>
+                    <div class="product-price">
+                        <div class="product-descrip-price">￥3999.00</div>
+                        <div class="product-descrip-weight">0.56Kg</div>
+                    </div>
+                    <div class="product-count">x1</div>
+                    <div class="product-status">有货</div>
+                </div>
+                <div class="product-goods">
+                    <img height="140px" style="float: left; padding: 30px 30px 20px 20px" src="https://img14.360buyimg.com/N4/jfs/t1/43583/36/281/722147/5cc15b5aEd70dae6c/fc7496beccf95f8a.jpg">
+                    <div class="product-descrip">
+                        <div class="product-title">英特尔（Intel）i9-9900k 酷睿八核 盒装CPU处理器</div><br>
+                        <div style="font-weight: bold; float: left">颜色：<div style="float:right; font-weight: normal; width:150px;  text-overflow:ellipsis; white-space:nowrap; overflow:hidden;">i9-9900K★3.6GHz★8核16线程</div></div>
+                        <div style="margin-top:15px; font-weight: bold; float: left">尺码：<div style="float:right; font-weight: normal; width:150px;  text-overflow:ellipsis; white-space:nowrap; overflow:hidden;">盒装国行解锁版</div></div><br>
+                        <div style="color: #0f6674; float: left; font-size: 14px; margin-top: 10px">支持7天无理由退货</div>
+                    </div>
+                    <div class="product-price">
+                        <div class="product-descrip-price">￥3999.00</div>
+                        <div class="product-descrip-weight">0.56Kg</div>
+                    </div>
+                    <div class="product-count">x1</div>
+                    <div class="product-status">有货</div>
+                </div>
+                <div class="product-goods">
+                    <img height="140px" style="float: left; padding: 30px 30px 20px 20px" src="https://img14.360buyimg.com/N4/jfs/t1/43583/36/281/722147/5cc15b5aEd70dae6c/fc7496beccf95f8a.jpg">
+                    <div class="product-descrip">
+                        <div class="product-title">英特尔（Intel）i9-9900k 酷睿八核 盒装CPU处理器</div><br>
+                        <div style="font-weight: bold; float: left">颜色：<div style="float:right; font-weight: normal; width:150px;  text-overflow:ellipsis; white-space:nowrap; overflow:hidden;">i9-9900K★3.6GHz★8核16线程</div></div>
+                        <div style="margin-top:15px; font-weight: bold; float: left">尺码：<div style="float:right; font-weight: normal; width:150px;  text-overflow:ellipsis; white-space:nowrap; overflow:hidden;">盒装国行解锁版</div></div><br>
+                        <div style="color: #0f6674; float: left; font-size: 14px; margin-top: 10px">支持7天无理由退货</div>
+                    </div>
+                    <div class="product-price">
+                        <div class="product-descrip-price">￥3999.00</div>
+                        <div class="product-descrip-weight">0.56Kg</div>
+                    </div>
+                    <div class="product-count">x1</div>
+                    <div class="product-status">有货</div>
+                </div>
             </div>
         </div>
     </div>
+
+    <div class="invoice">
+        <div class="step-tit" id="invoice-step" style="margin-top: 20px">
+            <h3 style="margin-left: 40px; line-height: 40px; float: left" class="blackfont">发票信息</h3>
+            <div class="tips-new-white" style="float: left">
+                <b></b><span><i></i>开企业抬头发票须填写纳税人识别号，以免影响报销</span><br>
+            </div>
+        </div>
+        <div class="step-content">
+            <div id="part-inv" class="invoice-cont" style="float: left; clear: left; margin-left: 50px">
+                <span class="mr10"> 电子普通发票 <i class='invoice-tips-icon' data-tips='电子普通发票与纸质发票具有同等法律效力，可支持报销入账、商品售后凭证。'></i> &nbsp; </span>
+                <span class="mr10"> 个人&nbsp; </span>
+                <span class="mr10"> 商品明细&nbsp; </span>
+                &nbsp;
+                <a href="#none" id="invoiceEdit" class="ftx-05 invoice-edit" onclick="edit_Invoice()" clstag="pageclick|keycount|trade_201602181|16">修改</a>
+            </div>
+        </div>
+    </div>
+    <div class="discount">
+        <h3 style="margin-left: 40px; line-height: 40px; float: left" class="blackfont">使用优惠/礼品卡/抵用<img src="../images/order/header/header-4.png" style="height: 18px"></h3>
+    </div>
 </div>
-<div id="calculation"></div>
-<div id="service-2017">
+<div id="calculation" style="margin-right: 200px">
+    <div class="order-summary">
+        <!--  预售 计算支付展现方式 begin -->
+        <div class="statistic fr mt20">
+            <div class="list">
+                <span><em class="ftx-01">4</em> 件商品，总商品金额：</span>
+                <em class="price" id="warePriceId"
+                    v="24196.00">￥9999.00</em>
+            </div>
+            <div class="list" id="shuifeiId">
+                <span>税费：</span>
+                <em class="price" id="gstTaxAmountId" > <i class="freight-icon gstTaxAmount"></i><font color="#FF6600"> ￥0.00 </font></em>
+            </div>
+            <div class="list hide" id="crossRegionalFeetip">
+                <span>调货服务费：</span>
+                <em class="price" id="crossRegionalFeeId" > <i class="freight-icon crossRegionalFee"></i><font color="#FF6600"> ￥0.00 </font></em>
+            </div>
+            <div class="list">
+                <span>运费：</span>
+                <em class="price" id="freightPriceId"> ￥0.00</em>
+            </div>
+            <div class="list" style="display: none"  id="buyerFreightDivId">
+                <span>退换无忧：</span>
+                <em class="price" id="buyerFreightInsuranceId">￥0.00</em>
+            </div>
+            <div class="list"
+                 id="showCouponPrice"  style="display:none;"  >
+                <input id="couponPriceNum" type="hidden" value="0"/>
+                <input id="couponPricehidden" type="hidden" value="0.00"/>
+                <span>商品优惠：</span><em class="price" id='couponPriceId'>-￥0.00</em>
+            </div>
+        </div>
+        <div class="clr"></div>
+    </div>
+    <div class="trade-foot-detail-com" style="margin-left: 200px; width: 1100px">
+        <div class="fc-price-info">
+            <span class="price-tit">应付总额：</span>
+            <span class="price-num" id="sumPayPriceId">￥24196.00</span>
+        </div>
+        <div class="fc-baitiao-info" style="display: none;">
+            <span>白条支付：<em>不分期</em>（不使用优惠）<i class="bt-edit-icon" onclick="javascript:btDetail();" clstag="pageclick|keycount|PaymentLead__2016030411|5"></i></span>
+        </div>
+        <div class="giftbuy-info">
+            <label class="noShowMoney hide" id="giftBuyHidePriceDiv">
+                <input type="checkbox" id="giftBuyHidePrice" checked>包装内不显示礼品价格
+            </label>
+        </div>
+        <div class="fc-consignee-info">
+            <span class="mr20" id="sendAddr">寄送至： 河北 石家庄市 辛集市 辛集镇  嘉南大道101号</span>
+            <span id="sendMobile">收货人：陈家旭 155****9825</span>
+        </div>
+    </div>
+</div>
+<div id="service-2017" style="margin-top: 50px">
     <div class="w" style="height: 100px">
         <ol class="slogen">
             <li class="item fore1">
@@ -261,8 +382,7 @@
         </div>
     </div>
 </div>
-<div>
-    <div id="footer-2017" Includefile_Footer_id="1002">
+<div id="footer-2017" Includefile_Footer_id="1002">
         <div class="w">
             <div class="copyright_links">
                 <p>
@@ -327,6 +447,5 @@
             </p>
         </div>
     </div>
-</div>
 </body>
 </html>
