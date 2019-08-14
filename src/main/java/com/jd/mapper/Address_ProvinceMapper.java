@@ -1,8 +1,19 @@
 package com.jd.mapper;
 
 import com.jd.enity.Address_Province;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+@Repository
 public interface Address_ProvinceMapper {
+
+    List<Address_Province> getAllProvince();
+
+
+
+
+
     int deleteByPrimaryKey(Integer a_pid);
 
     int insert(Address_Province record);

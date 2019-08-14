@@ -1,8 +1,8 @@
 body{font-family: "Avant Garde","Tahoma","微软雅黑","SimHei";background: white;}
 a{text-decoration: none; }
 
-.header{width: 100%; background-color: gainsboro; height: 30px; font-size: 13px; margin-top: -10px}
-.header ul{color: #666666; list-style: none; margin-top: 5px}
+.header{width: 100%; background-color: gainsboro; height: 40px; font-size: 13px; margin-top: -10px}
+.header ul{color: #666666; list-style: none; margin-top: -10px}
 .header ul li{padding: 3px 0px 0px 0px;}
 .header ul li img{width: 16px; height: 13px; padding: 2px 0px 0px 0px}
 .header ul li a{color: #666666}
