@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>订单结算页-京东商城</title>
+    <link href="css/order.css" ; type="text/css" ; rel="stylesheet">
+    <link href="css/input.css" ; type="text/css" ; rel="stylesheet">
+    <script src="js/order.js"></script>
+    <script src="js/input.js"></script>
+</head>
+<body>
+<div class="header">
+    <ul>
+        <li style="float: left; margin-left: 200px"><a href="#"><img src="images/header/header-1.png" ><span> 京东首页</span></a></li>
+        <li style="float: left; margin-left: 20px"><a href="#"><img src="images/header/header-2.png" ><span> 厦门</span></a></li>
+    </ul>
+    <ul>
+        <li style="float: right;  margin-right: 200px"><a href="#"><span> 手机京东 </span></a></li>
+        <li style="float: right;  margin-right: 20px"><a href="#"><span> 网站导航 </span><img src="images/header/header-4.png"></a> | </li>
+        <li style="float: right;  margin-right: 20px"><a href="#"><span> 客户服务 </span><img src="images/header/header-4.png"></a> | </li>
+        <li style="float: right;  margin-right: 20px"><a href="#"><span> 企业采购 </span><img src="images/header/header-4.png"></a> | </li>
+        <li style="float: right;  margin-right: 20px"><a href="#"><span> 京东会员 </span></a> | </li>
+        <li style="float: right;  margin-right: 20px"><a href="#"><span> 我的京东 </span><img src="images/header/header-4.png"></a> | </li>
+        <li style="float: right;  margin-right: 20px"><a href="#"><span> 我的订单 |</span></a></li>
+        <li style="float: right;  margin-right: 20px"><a href="#"><span> 用户名 </span><img src="images/header/header-3.png" style=" width: 50px; height: 12px">  <img src="images/header/header-4.png" ></a> | </li>
+    </ul>
+</div>
+<div class="top">
+    <div class="top-img">
+        <a href="#"><img src="images/top/top1.png" style="float: left;"></a>
+        <a href="#"><img src="images/top/top-cal.png" style="float: left;"></a>
+        <img src="images/top/top-right.png" style="float: right; margin-right: 400px">
+    </div>
+    <div>
+        <span style="font-size: 22px; float: left; clear: left;color: #666666; line-height: 30px">填写并核对订单信息</span>
+    </div>
+</div>
+<div class="order">
+    <div class="receiver">
+        <div class="orderhead">
+            <span style="margin-left: 40px; line-height: 40px" class="blackfont">收货人信息</span>
+            <a href="#"><span style="margin-left: 830px; line-height: 40px" class="bluefont">新增收货地址</span></a>
+        </div>
+        <div class="address">
+            <select class="select-addr">
+                <option>姓名1 省份1</option>
+                <option>姓名2 省份2</option>
+                <option>姓名3 省份3</option>
+            </select>
+            <span style="line-height: 30px; font-size: 14px; color: #666666; margin-left: 30px">姓名 &nbspxx省 &nbspxx市 &nbspxx区 &nbspxx街道 xx路 xx号</span>
+            <a><a href="#"><span style="margin-left: 330px; line-height: 40px" class="bluefont">修改地址</span></a></a>
+        </div>
+        <div class="JDziti">
+            <span style="margin-left: 80px; top: 20px" class="span1">京东自提</span>
+            <span style="margin-left: 30px; color: red" class="bluefont">抱歉，存在不支持自提的商品或该地址下没有可用的自提点</span>
+            <span class="bluefont" style="margin-left: 40px"> 详情</span>
+        </div>
+    </div>
+    <hr width="75%" style="color: #a7a7a7; margin: 10px 200px 10px auto;">
+    <div class="payment">
+        <div class="orderhead">
+            <span style="margin-left: 40px; line-height: 40px" class="blackfont">支付方式</span>
+        </div>
+        <div class="choose-pay">
+            <input type="radio" name="payment" value="hdfk">货到付款
+            <input type="radio" name="payment" value="jdqb">京东钱包
+            <input type="radio" name="payment" value="zfb">支付宝
+            <input type="radio" name="payment" value="wxzf">微信支付
+            <input type="radio" name="payment" value="ylzf">银联支付
+        </div>
+    </div>
+    <hr width="75%" style="color: #a7a7a7; margin: 10px 200px 10px auto;">
+    <div class="product-list">
+        <div class="orderhead">
+            <span style="margin-left: 40px; line-height: 40px" class="blackfont">送货清单（暂时只支持京东自营商品）</span>
+            <a href="#"><span style="margin-left: 500px; line-height: 40px" class="bluefont"><img src="images/order/order-1.png" height="16px" style="margin-top: 5px">价格说明</span></a>
+            <a href="#"><span style="margin-left: 46px; line-height: 40px" class="bluefont">返回修改购物车</span></a>
+        </div>
+        <div class="express-list">
+            <div class="express">
+                <div class="kdgs">
+                    <div class="listhead">
+                        <span class="list-blackfont">配送方式</span>
+                        <a href="#"><span style="margin-left: 190px; line-height: 40px" class="bluefont">对应商品</span></a>
+                    </div>
+                    <select class="select-addr" style="margin-left: 30px">
+                        <option>顺丰快递</option>
+                        <option>京东快递</option>
+                        <option>韵达快递</option>
+                    </select>
+                    <hr width="0px"><br>
+                    <span style="margin-left: 30px; font-size: 13px; color: #999999;">配送时间：</span>
+                    <span style="margin-left: 10px; font-size: 13px; color: #666666;">工作日、双休日与节假日均可送货</span>
+                </div>
+                <hr width="250" style="color: #a7a7a7;">
+                <div class="thwy">
+                    <input type="checkbox" name="thwychoose" value="1" style="margin-left: 10px; font-size: 14px; line-height: 40px">退换无忧
+                    <span style="margin-left: 15px; color: red" class="bluefont">￥0.5</span><br><br>
+                    <div style="margin-left: 25px; width: 300px; height: auto">
+                        <span style="font-size: 13px; color: #666666;">注：自签收7天内退货、15天内换货，可享受一次上门取件服务。</span>
+                        <span class="bluefont" style="margin-left: 20px"><a>查看详情</a></span>
+                    </div>
+                    <br>
+                </div>
+                <hr width="250" style="color: #a7a7a7;">
+                <div class="weight">
+                    <span style="margin-left: 40px; font-size: 15px; color: #666666; ">总重量：</span>
+                    <span style="margin-left: 10px; font-size: 15px; color: #999999; ">7.777kg</span>
+                </div>
+            </div>
+            <div class="product">
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

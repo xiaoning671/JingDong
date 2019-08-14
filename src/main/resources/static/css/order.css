@@ -1,0 +1,97 @@
+body{font-family: "Avant Garde","Tahoma","微软雅黑","SimHei";background: white;}
+a{text-decoration: none; }
+
+.header{width: 100%; background-color: gainsboro; height: 30px; font-size: 13px; margin-top: -10px}
+.header ul{color: #666666; list-style: none; margin-top: 5px}
+.header ul li{padding: 3px 0px 0px 0px;}
+.header ul li img{width: 16px; height: 13px; padding: 2px 0px 0px 0px}
+.header ul li a{color: #666666}
+
+.top{width: 100%; height: 150px; margin-right: 200px; margin-left: 200px;}
+.top-img img{height: 120px;}
+
+.order{width: 1120px; height: auto; margin-right: 200px; margin-left: 200px; border-color: #999999; border-style: solid; border-width: 0.7px; margin-top: 15px;}
+.receiver{width: 1120px; height: auto;}
+.bluefont{font-size: 13px; color: blue;}
+.bluefont a{text-decoration: none;}
+.bluefont a:hover{color: #c81623}
+.blackfont{font-size: 17px; color: black; font-weight: bold;}
+.select-addr{width: 150px; height: 30px; font-size: 17px; color: #666666; margin-left: 80px;margin-top: 15px;}
+.address a:hover{color: #c81623; height: auto; width: 600px}
+.address a{font-size: 14px; text-decoration: none;}
+.span1{height: 60px; background-color: #e1251b; color: white; font-size: 14px; padding: 5px 5px 5px 5px; border-radius: 10px; line-height: 40px}
+
+.choose-pay{margin-top: 10px; margin-left: 40px; height: 45px;}
+.choose-pay input{border-color: #666666; width: 50px; height: 30px; height: 18px; color: black; line-height: 30px}
+
+.express-list{height: auto; width: 1120px; margin-top: 10px}
+.express{height: auto; width: 371px; clear: left; margin-left: 35px; background-color: #cccccc}
+.product{height: auto; width: 680px; background-color: lightblue; position: absolute; top: 522.5px; left: 610px}
+
+.list-blackfont{color: #666666; font-size: 14px; line-height: 40px; margin-left: 25px; margin-top: 20px; font-weight: bold}
+.thwy input{width: 50px; font-size: 14px; color: #666666}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
