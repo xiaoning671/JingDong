@@ -1,7 +1,9 @@
 package com.jd.mapper;
 
 import com.jd.enity.Product_Images;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface Product_ImagesMapper {
     int deleteByPrimaryKey(Integer id);
 

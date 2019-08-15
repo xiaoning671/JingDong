@@ -1,24 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jd.mapper.Product_VersionMapper">
-  <resultMap id="BaseResultMap" type="com.jd.enity.Product_Version">
+  <resultMap id="Product_VersionResultMap" type="com.jd.enity.Product_Version">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="product_id" jdbcType="INTEGER" property="product_id" />
+<!--    <result column="product_id" jdbcType="INTEGER" property="product_id" />-->
     <result column="price" jdbcType="DECIMAL" property="price" />
     <result column="stock" jdbcType="INTEGER" property="stock" />
     <result column="purprice" jdbcType="DECIMAL" property="purprice" />
     <result column="weight" jdbcType="INTEGER" property="weight" />
+    <association property="product_info" resultMap="Product_InfoResultMap"></association>
+  </resultMap>
+  <resultMap id="Product_InfoResultMap" type="com.jd.enity.Product_Info">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
+    <result column="min_price" jdbcType="DECIMAL" property="min_price" />
+    <result column="discount" jdbcType="VARCHAR" property="discount" />
+    <result column="warranty_data" jdbcType="DATE" property="warranty_data" />
+    <result column="status_id" jdbcType="INTEGER" property="status_id" />
   </resultMap>
   <sql id="Base_Column_List">
     id, name, product_id, price, stock, purprice, weight
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from Product_Version
-    where id = #{id,jdbcType=INTEGER}
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="Product_VersionResultMap">
+    select pv.id, pv.name, pv.price, pv.weight, p.id, p.name, p.title from Product_Version pv, Product_Info p where pv.id = #{id,jdbcType=INTEGER} and pv.product_id = p.id
   </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from Product_Version
     where id = #{id,jdbcType=INTEGER}

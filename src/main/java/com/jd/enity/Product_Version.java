@@ -7,7 +7,7 @@ public class Product_Version {
 
     private String name;
 
-    private Integer product_id;
+    private Product_Info product_info;
 
     private BigDecimal price;
 
@@ -16,6 +16,27 @@ public class Product_Version {
     private BigDecimal purprice;
 
     private Integer weight;
+
+    @Override
+    public String toString() {
+        return "Product_Version{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", product_info=" + product_info +
+                ", price=" + price +
+                ", stock=" + stock +
+                ", purprice=" + purprice +
+                ", weight=" + weight +
+                '}';
+    }
+
+    public Product_Info getProduct_info() {
+        return product_info;
+    }
+
+    public void setProduct_info(Product_Info product_info) {
+        this.product_info = product_info;
+    }
 
     public Integer getId() {
         return id;
@@ -31,14 +52,6 @@ public class Product_Version {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
-    }
-
-    public Integer getProduct_id() {
-        return product_id;
-    }
-
-    public void setProduct_id(Integer product_id) {
-        this.product_id = product_id;
     }
 
     public BigDecimal getPrice() {

@@ -1,7 +1,9 @@
 package com.jd.mapper;
 
 import com.jd.enity.User_ShopCart;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface User_ShopCartMapper {
     int deleteByPrimaryKey(Integer id);
 

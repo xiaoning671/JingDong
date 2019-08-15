@@ -1,21 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jd.mapper.Address_InfoMapper">
-  <resultMap id="BaseResultMap" type="com.jd.enity.Address_Info">
+  <resultMap id="Address_InfoResultMap" type="com.jd.enity.Address_Info">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_id" jdbcType="INTEGER" property="user_id" />
     <result column="receiver" jdbcType="VARCHAR" property="receiver" />
     <result column="zipcode" jdbcType="INTEGER" property="zipcode" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
-    <result column="province" jdbcType="INTEGER" property="province" />
-    <result column="city" jdbcType="INTEGER" property="city" />
-    <result column="area" jdbcType="VARCHAR" property="area" />
+<!--    <result column="province" jdbcType="INTEGER" property="province" />-->
+<!--    <result column="city" jdbcType="INTEGER" property="city" />-->
+<!--    <result column="area" jdbcType="VARCHAR" property="area" />-->
     <result column="address" jdbcType="VARCHAR" property="address" />
+    <association property="address_province" resultMap="Address_ProvinceResultMap"></association>
+    <association property="address_city" resultMap="Address_CityResultMap"></association>
+    <association property="address_area" resultMap="Address_AreaResultMap"></association>
   </resultMap>
+
+  <resultMap id="Address_ProvinceResultMap" type="com.jd.enity.Address_Province">
+    <id column="a_pid" jdbcType="INTEGER" property="a_pid" />
+    <result column="a_pname" jdbcType="VARCHAR" property="a_pname" />
+  </resultMap>
+  <resultMap id="Address_CityResultMap" type="com.jd.enity.Address_City">
+    <id column="a_cid" jdbcType="INTEGER" property="a_cid" />
+    <result column="a_cname" jdbcType="VARCHAR" property="a_cname" />
+  </resultMap>
+  <resultMap id="Address_AreaResultMap" type="com.jd.enity.Address_Area">
+    <id column="a_areaid" jdbcType="INTEGER" property="a_areaid" />
+    <result column="a_areaname" jdbcType="VARCHAR" property="a_areaname" />
+  </resultMap>
+
+
+
+  <select id="selectByUserId" resultMap="Address_InfoResultMap" parameterType="java.lang.Integer">
+    select a.id, a.receiver, a.zipcode, a.phone, ap.a_pname, ac.a_cname, aa.a_areaname from Address_Info a, Address_Province ap, Address_City ac, Address_Area aa where a.province = ap.a_pid and a.city = ac.a_cid and a.area = aa.a_areaid and a.user_id = #{id,jdbcType=INTEGER}
+  </select>
+
+
+
+
+
+
+
+
+
   <sql id="Base_Column_List">
     id, user_id, receiver, zipcode, phone, province, city, area, address
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="Address_InfoResultMap">
     select 
     <include refid="Base_Column_List" />
     from Address_Info
@@ -141,21 +172,21 @@
 
 
 
-  <resultMap id="Address_InfoResultMap" type="com.jd.enity.Address_Info">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="user_id" jdbcType="INTEGER" property="user_id" />
-    <result column="receiver" jdbcType="VARCHAR" property="receiver" />
-    <result column="zipcode" jdbcType="INTEGER" property="zipcode" />
-    <result column="phone" jdbcType="VARCHAR" property="phone" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
-      <association property="province" resultMap="ProvinceResultMap" />
-      <association property="city" resultMap="CityResultMap" />
-      <association property="area" resultMap="AreaResultMap" />
-  </resultMap>
+<!--  <resultMap id="Address_InfoResultMap" type="com.jd.enity.Address_Info">-->
+<!--    <id column="id" jdbcType="INTEGER" property="id" />-->
+<!--    <result column="user_id" jdbcType="INTEGER" property="user_id" />-->
+<!--    <result column="receiver" jdbcType="VARCHAR" property="receiver" />-->
+<!--    <result column="zipcode" jdbcType="INTEGER" property="zipcode" />-->
+<!--    <result column="phone" jdbcType="VARCHAR" property="phone" />-->
+<!--    <result column="address" jdbcType="VARCHAR" property="address" />-->
+<!--      <association property="province" resultMap="ProvinceResultMap" />-->
+<!--      <association property="city" resultMap="CityResultMap" />-->
+<!--      <association property="area" resultMap="AreaResultMap" />-->
+<!--  </resultMap>-->
 
-    <select id="getAllAddress" resultMap="Address_InfoResultMap">
-      select * from Address_Info a, Address_Province ap, Address_City ac, Address_Area aa where a.province = ap.a_pid and a.city = ac.a_cid and a.area = aa.a_areaid;
-    </select>
+<!--    <select id="getAllAddress" resultMap="Address_InfoResultMap">-->
+<!--      select * from Address_Info a, Address_Province ap, Address_City ac, Address_Area aa where a.province = ap.a_pid and a.city = ac.a_cid and a.area = aa.a_areaid;-->
+<!--    </select>-->
 
 
 
