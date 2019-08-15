@@ -412,7 +412,6 @@ ul li {
 .login_model {
     width: 304px;
     height: 38px;
-    /*background-color: #7e86fa;*/
     margin-bottom: 20px;
     border: 1px solid #999;
 }
@@ -434,13 +433,22 @@ ul li {
 
 .input_ {
     margin: 10px 0px 10px 0px;
-    width: 254px;
+    width: 230px;
     float: right;
     /*border-width: 0px;*/
     height: 20px;
     font-size: 15px;
     border: none;
-    background:transparent;
+    background-color: snow;
+}
+.input_clear{
+    width: 14px;
+    height: 14px;
+    background: url("../images/login/pwd-icons-new.png")no-repeat -105px 0px;
+    float: right;
+    margin-right: 6px;
+    margin-top: 14px;
+    margin-left: 4px;
 }
 
 #pass_img {
