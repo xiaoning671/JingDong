@@ -3,6 +3,24 @@ package com.jd.enity;
 import java.util.Date;
 
 public class User_Info {
+    @Override
+    public String toString() {
+        return "User_Info{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", password='" + password + '\'' +
+                ", idcard='" + idcard + '\'' +
+                ", birthday=" + birthday +
+                ", sex='" + sex + '\'' +
+                ", vip=" + vip +
+                ", create_date=" + create_date +
+                ", status=" + status +
+                ", defaultaddress='" + defaultaddress + '\'' +
+                '}';
+    }
+
     private Integer id;
 
     private String name;

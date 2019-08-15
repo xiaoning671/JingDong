@@ -85,7 +85,7 @@ a:hover {
     width: 16px;
     height: 16px;
     margin: 1px 0px 1px 100px;
-    background-image: url("../images/icon-tips.png");
+    background-image: url("../images/login/icon-tips.png");
     float: left
 }
 
@@ -178,6 +178,28 @@ a:hover {
 }
 .lo_tab_1_in a:hover{
     font-weight: bold;
+}
+#mistake{
+    width:306px ;
+    height: 38px;
+    background-color: #ffebeb;
+    float: left;
+    display: none;
+    margin-bottom: 5px;
+
+}
+#mis_img{
+    width: 16px;
+    height: 16px;
+    background: url("../images/login/pwd-icons-new.png")no-repeat -104px -49px;
+    float: left;
+    margin-top: 11px;
+    margin-left: 11px;
+
+}
+#mistake p{
+    margin-top: 8px;
+    color: #e4393c;
 }
 
 #mc {
@@ -284,8 +306,8 @@ a:hover {
     height: 51px;
     background-color: #fcfcfc;
     border-top: 1px solid #f4f4f4;
-    float: right;
-    margin-top: 10px;
+    float:left;
+    margin-top: 30px;
 }
 
 #kbc_coa {
@@ -378,12 +400,13 @@ ul li {
     height: 270px;
     float: left;
     display: none;
+    margin-bottom: 20px;
 }
 
 #login_form {
-    margin-top: 28px;
     width: 306px;
     height: 192px;
+    float: left;
 }
 
 .login_model {
@@ -391,7 +414,6 @@ ul li {
     height: 38px;
     /*background-color: #7e86fa;*/
     margin-bottom: 20px;
-    margin-left: 1px;
     border: 1px solid #999;
 }
 

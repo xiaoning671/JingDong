@@ -13,11 +13,15 @@
             $("#lo_t1").click(function () {
                 $("#qrc_main").css({"display":""});
                 $("#login_box").css({"display":"none"})
+                $("#mc").css({"margin-top":"30px"})
             }),
             //点击账 "号密码登录"
             $("#lo_t2").click(function () {
                 $("#qrc_main").css({"display":"none"});
-                $("#login_box").css({"display":"inline"})
+                $("#login_box").css({"display":"inline"});
+                // $("#mistake").css({"display":"inline"});  提交的信息不对则出现
+                $("#mc").css({"margin-top":"10px"})
+
             }),
             //点击 "登录"
             $("#login_btn").click(function () {
@@ -33,7 +37,14 @@
                         // i:1,
                     },
                     success:function (data) {
-                            alert(data);
+                            // alert(data);
+                            if(data==true){
+                                alert("登录成功！欢迎")
+                                window.location.href="http://localhost:8080/login"
+                            }else{
+                                alert("登录失败")
+
+                            }
 
                     }
                 });
@@ -113,6 +124,9 @@
                                         </div>
                     <!--这是测试-->
                     <div id="login_box"> <!--账户密码的登录切换 --账户密码-->
+                        <div id="mistake">
+                            <div id="mis_img"></div><p>账户或密码输入不正确</p>
+                        </div>
                         <div id="login_form">
                             <div class="login_model">
                                 <div id="name_img"></div>

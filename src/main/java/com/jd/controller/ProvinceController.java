@@ -1,7 +1,9 @@
 package com.jd.controller;
 
 import com.jd.enity.Address_Province;
+import com.jd.enity.User_Info;
 import com.jd.service.ProvinceServince;
+import com.jd.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,4 +26,5 @@ public class ProvinceController {
         }
         return provinceServince.getAllProvince();
     }
+
 }
