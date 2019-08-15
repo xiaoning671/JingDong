@@ -4,7 +4,6 @@ import com.jd.enity.User_Info;
 
 public interface User_InfoMapper {
     int checkByName_Password(User_Info record);
-    User_Info select_id(Integer id);
 
     int deleteByPrimaryKey(Integer id);
 

@@ -11,19 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
     @Autowired
     UserService userService;
-
     @RequestMapping("/login")
     public boolean login(User_Info user){
-        System.out.println(user);
+        //传进来用户填写的登录账户（可name,phone,email)和密码password
         return userService.checkUser(user);
-
     }
 
-//    @RequestMapping("/test")
-//    public User_Info test(int i){
-//        System.out.println(i);
-//        return userService.test(i);
-//    }
     @RequestMapping("/registered")
     public String registered(){
         return "注册界面";

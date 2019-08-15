@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>京东商城后台管理系统</title>
-    <link href="css/backstage.css" type="text/css" rel="stylesheet">
+    <link href="../css/backstage.css" type="text/css" rel="stylesheet">
     <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <script src="//cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
     <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-1.8.2.min.js"></script>
-    <script src="js/backstage.js" rel="script"></script>
+    <script src="../script/jquery-3.4.1.min.js"></script>
+    <script src="../script/backstage.js"></script>
 </head>
 <body>
 <div class="header">
     <div>
-        <img src="images/backstage/JDlogo-dog.png" height="100px" style="float: left">
+        <img src="../images/backstage/JDlogo-dog.png" height="100px" style="float: left">
     </div>
     <div class="header-title">
         <span>京东商城后台管理系统</span>
@@ -33,10 +34,10 @@
             </div>
             <div class="collapse navbar-collapse" id="example-navbar-collapse1">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">一级商品种类管理</a></li>
-                    <li><a href="#">一级商品种类添加</a></li>
-                    <li><a href="#">二级商品种类管理</a></li>
-                    <li><a href="#">二级商品种类添加</a></li>
+                    <li><a href="#" id="produce_kind_first_manage">一级商品种类管理</a></li>
+                    <li><a href="#" id="produce_kind_first_add">一级商品种类添加</a></li>
+                    <li><a href="#" id="produce_kind_second_manage">二级商品种类管理</a></li>
+                    <li><a href="#" id="produce_kind_second_add">二级商品种类添加</a></li>
                 </ul>
             </div>
         </nav>
@@ -52,10 +53,10 @@
             </div>
             <div class="collapse navbar-collapse" id="example-navbar-collapse2">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">商品添加</a></li>
-                    <li><a href="#">商品删除</a></li>
-                    <li><a href="#">商品属性修改</a></li>
-                    <li><a href="#">商品查询</a></li>
+                    <li><a href="#" id="produce_manage_add">商品添加</a></li>
+                    <li><a href="#" id="produce_manage_del">商品删除</a></li>
+                    <li><a href="#" id="produce_manage_change">商品属性修改</a></li>
+                    <li><a href="#" id="produce_manage_select">商品查询</a></li>
                 </ul>
             </div>
         </nav>
@@ -71,8 +72,8 @@
             </div>
             <div class="collapse navbar-collapse" id="example-navbar-collapse3">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">订单修改</a></li>
-                    <li><a href="#">订单查询</a></li>
+                    <li><a href="#"id="order_alter">订单修改</a></li>
+                    <li><a href="#" id="order_select">订单查询</a></li>
                 </ul>
             </div>
         </nav>
@@ -88,37 +89,256 @@
             </div>
             <div class="collapse navbar-collapse" id="example-navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">账户信息修改</a></li>
-                    <li><a href="#">增加账户（测试）</a></li>
-                    <li><a href="#">注销账户（测试）</a></li>
+                    <li><a href="#" id="user_all">列出所有账户信息</a> </li>
+                    <li><a href="#"id="user_alter">账户信息修改</a></li>
+                    <li><a href="#"id="user_add">增加账户（测试）</a></li>
+                    <li><a href="#"id="user_del">注销账户（测试）</a></li>
                 </ul>
             </div>
         </nav>
     </div>
     <div class="right-table">
         <div class="locate">
-            <span><a href="#">首页</a> &nbsp/ &nbsp</span>
-            <span><a href="#">商品种类管理</a> &nbsp/ &nbsp</span>
-            <span><a href="#">二级商品种类管理</a></span>
+            <span id="home"><a href="#" >首页</a> &nbsp/ &nbsp</span>
+<!--            <span><a href="#">商品种类管理</a> &nbsp/ &nbsp</span>-->
+<!--            <span><a href="#">二级商品种类管理</a></span>-->
         </div>
-        <div class="table">
-            <table class="table table-hover">
-                <caption>商品分配管理</caption>
-                <thead>
+
+        <!--*******************************开始后台的魔鬼列表动起来***************************************-->
+
+        <div class="table"><!---->
+
+            <table class="table table-hover"  id="disp_pro_manage1">  <!--一级商品种类管理-->
+                <caption>一级商品种类管理</caption>
+                <thead >
                 <tr>
-                    <th>商品种类编号</th>
-                    <th>商品种类名称</th>
-                    <th>商品种类描述</th>
-                    <th>操作</th>
+                    <th>商品种类编号</th><th>商品种类名称</th><th>商品种类描述</th><th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>Tanmay</td>
-                    <td>Bangalore</td>
-                    <td>560001</td>
-                    <td><a>修改</a><a>删除</a></td>
+                    <td>Tanmay</td><td>Bangalore</td><td>560001</td><td><a>修改</a>|<a>删除</a></td>
                 </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-hover " id="disp_pro_add1">  <!--一级商品种类添加-->
+                <caption>一级商品种类添加</caption>
+                <thead>
+                <tr>
+                    <th>商品种类编号</th><th>商品种类名称</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td><td>Bangalore</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="in1_num"></td>
+                    <td><input type="text" name="in1_kind"></td>
+                    <td><input type="button" name="in1_submit" value="提交数据"></td>
+                    <td><input type="button" name="in1_clear" value="重新输入"></td>
+                </tr>
+                </tbody>
+            </table>
+            <!--***********************一级商品over种类-->
+
+            <table class="table table-hover"  id="disp_pro_manage2">  <!--二级商品种类管理-->
+                <caption>二级商品种类管理</caption>
+                <thead >
+                <tr>
+                    <th>商品种类编号</th><th>商品种类名称</th><th>商品种类的大类名</th><th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Tanmay</td><td>Bangalore</td><td>560001</td><td><a>修改</a>|<a>删除</a></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-hover " id="disp_pro_add2">  <!--二级商品种类添加-->
+                <caption>二级商品种类添加</caption>
+                <thead>
+                <tr>
+                    <th>商品种类编号</th><th>商品种类名称</th><th>商品所属大类名称</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td><td>Bangalore</td><td>bigclass</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="in2_num"></td>
+                    <td><input type="text" name="in2_kind"></td>
+                    <td><input type="text" name="in2_bigclass"></td>
+                    <td><input type="button" name="in2_submit" value="提交数据"></td>
+                    <td><input type="button" name="in2_clear" value="重新输入"></td>
+                </tr>
+                </tbody>
+            </table>
+            <!--**************二级种类的管理和添加over**************-->
+
+
+            <table class="table table-hover"  id="disp_produce_add">  <!--商品添加-->
+                <caption>商品添加</caption>
+                <thead >
+                <tr>
+                    <th>商品名字</th><th>商品标题</th><th>最低价格</th><th>折扣</th><th>保证期限</th><th>商品状态</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td> <input type="text" name="produce_add_name" size="10px"></td><td><input type="text"name="produce_add_title" size="10px"></td>
+                    <td>  <input type="text" name="produce_add_minprice"size="10px"></td><td><input type="text"name="produce_add_sum"size="10px"></td>
+                    <td>  <input type="date" name="produce_add_warranty"size="10px"></td><td><input type="text"name="produce_add_status"size="10px"></td>
+                    <td> <input type="button" value="提交">
+                </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-hover " id="disp_produce_del">  <!--商品删除-->
+                <caption>商品删除</caption>
+                <thead>
+                <tr>
+                    <th>请输入删除商品的序号</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><input type="text"name="in_pro_del"><td>
+                    <td><input type="button" name="in_del_submit" value="提交数据"></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-hover " id="disp_produce_alter">  <!--商品属性修改-->
+                <caption>商品属性修改</caption>
+                <thead >
+                <tr>
+                    <th>商品名字</th><th>商品标题</th><th>最低价格</th><th>折扣</th><th>保证期限</th><th>商品状态</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><input type="text" name="produce_alter_name"size="10px"></td><td><input type="text"name="produce_alter_title"size="10px"></td>
+                    <td> <input type="text" name="produce_alter_minprice"size="10px"></td><td><input type="text"name="produce_alter_sum"size="10px"></td>
+                    <td> <input type="date" name="produce_alter_warranty"size="10px"></td><td><input type="text"name="produce_alter_status"size="10px"></td>
+                    <td><input type="button" value="提交">
+                </tr>
+                </tbody>
+            </table>
+            <table class="table table-hover " id="disp_produce_select">  <!--商品查询-->
+                <caption>商品查询</caption>
+                <thead >
+                <tr>
+                    <th>商品id</th><th>商品名字</th><th>商品标题</th><th>创建时间</th><th>最低价格</th><th>折扣</th><th>保证期限</th><th>商品状态</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>商品id</td><td>商品名字</td><td>商品标题</td><td>创建时间</td><td>最低价格</td><td>折扣</td><td>保证期限</td><td>商品状态</td>
+                </tr>
+                </tbody>
+            </table>
+            <!--*********************商品管理over***************************-->
+
+            <table class="table table-hover " id="disp_order_alter">  <!--订单修改-->
+                <caption>商品属性修改</caption>
+                <thead>
+                <tr>
+                    <th>订单id</th><th>用户的id</th><th>地址id</th><th>支付id</th><th>状态id</th><th>价格</th><th>流水号id</th><th>订单创建时间</th><th>订单支付时间</th><th>收货时间</th><th>评论</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><input type="text"size="2px"></td><td><input type="text"size="2px"></td>
+                    <td><input type="text"size="2px"></td><td><input type="text"size="2px"></td>
+                    <td><input type="text"size="2px"></td><td><input type="text"size="2px"></td>
+                    <td><input type="text"size="2px"></td><td><input type="date"style="width: 100px"></td>
+                    <td><input type="date"style="width: 100px"></td><td><input type="date"size="2px"style="width: 100px"></td>
+                    <td><input type="text"size="2px"></td>
+                </tr>
+                <tr><td><input type="button" value="提交修改"size="2px"></td></tr>
+                </tbody>
+            </table>
+            <table class="table table-hover " id="disp_order_select">  <!--订单查询-->
+                <caption>订单查询</caption>
+                <thead >
+                <tr>
+                    <th>订单id</th><th>用户的id</th><th>地址id</th><th>支付id</th><th>状态id</th><th>价格</th><th>流水号id</th><th>订单创建时间</th><th>订单支付时间</th><th>收货时间</th><th>评论</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>订单id</td><td>用户的id</td><td>地址id</td><td>支付id</td><td>状态id</td><td>价格</td><td>流水号id</td><td>订单创建时间</td><td>订单支付时间</td><td>收货时间</td><td>评论</td>
+                </tr>
+                </tbody>
+            </table>
+            <!--************************订单over****************-->
+
+            <table class="table table-hover " id="disp_user_all"> <!--列出所有用户信息-->
+                <caption>所有用户信息</caption>
+                <thead>
+                <tr>
+                    <th>id</th><th>姓名</th><th>邮箱</th><th>电话</th><th>密码</th><th>身份证</th><th>生日</th><th>性别</th><th>vip</th><th>开户日期</th><th>状态</th><th>默认地址</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>id</td><td>姓名</td><td>邮箱</td><td>电话</td><td>密码</td><td>身份证</td><td>生日</td><td>性别</td><td>vip</td><td>开户日期</td><td>状态</td><td>默认地址</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-hover " id="disp_user_alter">   <!--账户信息修改-->
+                <caption>账户信息修改</caption>
+                <thead>
+                    <tr>
+                        <th>id</th><th>姓名</th><th>邮箱</th><th>电话</th><th>密码</th><th>身份证</th>
+                        <th>生日</th><th>性别</th><th>vip</th><th>开户日期</th><th>状态</th><th>默认地址</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" size="10px"></td><td><input type="text" size="10px"></td>
+                        <td><input type="email" size="10px"></td><td><input type="text" size="10px"></td>
+                        <td><input type="password" size="10px"></td><td><input type="text" size="10px"></td>
+                        <td><input type="date" size="10px"></td><td><input type="text" size="10px"></td>
+                        <td><input type="text" size="10px"></td><td><input type="date" size="10px"></td>
+                        <td><input type="text" size="10px"></td><td><input type="text" size="10px"></td>
+                    </tr>
+                    <tr><td><input type="button" value="提交修改"></td></tr>
+                </tbody>
+            </table>
+            <table class="table table-hover " id="disp_user_add"> <!--增加账户-->
+                <caption>账户信息修改</caption>
+                <thead>
+                <tr>
+                    <th>id</th><th>姓名</th><th>邮箱</th><th>电话</th><th>密码</th><th>身份证</th><th>生日</th><th>性别</th><th>vip</th><th>开户日期</th><th>状态</th><th>默认地址</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><input type="text" size="10px"></td><td><input type="text" size="10px"></td>
+                    <td><input type="email" size="10px"></td><td><input type="text" size="10px"></td>
+                    <td><input type="password" size="10px"></td><td><input type="text" size="10px"></td>
+                    <td><input type="date" style="width:100px"></td><td><input type="text" size="10px"></td>
+                    <td><input type="text" size="10px"></td><td><input type="date" style="width:100px;"></td>
+                    <td><input type="text" size="10px"></td><td><input type="text" size="10px"></td>
+                </tr>
+                <tr><td><input type="button" value="确认提交"></td></tr>
+                </tbody>
+            </table>
+
+            <table class="table table-hover " id="disp_user_del"> <!--******* 注销账户-->
+                <caption>账户信息修改</caption>
+                <thead>
+                <tr><td>输入注销的用户id： <input type="text" ></td></tr>
+                </thead>
+                <tbody>
+                <tr><td><input type="button" value="确认提交"></td></tr>
                 </tbody>
             </table>
         </div>

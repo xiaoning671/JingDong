@@ -2,7 +2,11 @@ package com.jd.mapper;
 
 import com.jd.enity.Product_BigClass;
 
+import java.util.List;
+
 public interface Product_BigClassMapper {
+    List<Product_BigClass> getall_bigclass();
+
     int deleteByPrimaryKey(Integer id);
 
     int insert(Product_BigClass record);
