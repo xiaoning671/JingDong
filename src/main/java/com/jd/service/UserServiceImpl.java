@@ -10,13 +10,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     User_InfoMapper user_infoMapper;
     @Override
-    public boolean checkUser(User_Info user) {
-        int own;
-        own=user_infoMapper.checkByName_Password(user);
-        System.out.println(own);
-        if(own>=1)
-        return true;
-        return false;
+    public User_Info checkUser(User_Info user) {
+        User_Info own=user_infoMapper.checkByName_Password(user);
+        return own;
     }
 
 //    @Override

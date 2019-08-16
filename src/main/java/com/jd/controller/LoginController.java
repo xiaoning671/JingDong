@@ -12,7 +12,7 @@ public class LoginController {
     @Autowired
     UserService userService;
     @RequestMapping("/login")
-    public boolean login(User_Info user){
+    public User_Info login(User_Info user){
         //传进来用户填写的登录账户（可name,phone,email)和密码password
         return userService.checkUser(user);
     }

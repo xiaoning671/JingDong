@@ -5,6 +5,8 @@ import com.jd.enity.Product_BigClass;
 import java.util.List;
 
 public interface Product_BigClassService {
-     List<Product_BigClass> getBigClass();
+    public List<Product_BigClass> getallBigClass();
+    public boolean add_firstBigClass (Product_BigClass a_kind);
+    public boolean del_firstBigClass(Integer del);
 
 }

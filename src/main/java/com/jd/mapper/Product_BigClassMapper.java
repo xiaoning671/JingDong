@@ -1,11 +1,13 @@
 package com.jd.mapper;
 
 import com.jd.enity.Product_BigClass;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public interface Product_BigClassMapper {
-    List<Product_BigClass> getall_bigclass();
+
+    List<Product_BigClass> getallBigClass();
 
     int deleteByPrimaryKey(Integer id);
 

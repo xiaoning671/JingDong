@@ -25,7 +25,6 @@
             }),
             //点击 "登录"
             $("#login_btn").click(function () {
-                alert("登录中");
                 $.ajax({
                     url:"http://localhost:8080/login",
                     // url:"http://localhost:8080/test",
@@ -38,13 +37,13 @@
                     },
                     success:function (data) {
                             // alert(data);F
-                            if(data==true){
-                                alert("登录成功！欢迎")
-                                window.location.href="http://localhost:8080/html/login.html"  //*********要跳到首页
-                            }else{
-                                alert("登录失败")
-                                $("#mistake").css("display","inline"); //显示错误信息
-
+                        if(null != data && "" != data){
+                            alert("登录成功！欢迎");
+                            document.cookie=data.id;
+                            window.location.href="http://localhost:8080/html/login.html"  //*********要跳到首页
+                           }else{
+                            alert("登录失败");
+                            $("#mistake").css("display","inline"); //显示错误信息
                             }
 
                     }
