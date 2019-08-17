@@ -32,7 +32,7 @@ public class Product_VersionServiceImpl implements Product_VersionService {
              vlist.add(temp);
         }
 
-        System.out.println(vlist.get(1));
+        System.out.println(vlist.get(0));
 
         List<Product_Version> Plist = new ArrayList<Product_Version>();
         for (int i = 0; i<list.size(); i++){

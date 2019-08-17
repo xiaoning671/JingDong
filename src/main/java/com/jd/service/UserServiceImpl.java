@@ -15,6 +15,12 @@ public class UserServiceImpl implements UserService {
         return own;
     }
 
+    @Override
+    public User_Info getUserInfo(int id) {
+        return user_infoMapper.selectByPrimaryKey(id);
+    }
+
+
 //    @Override
 //    public User_Info test(int i) {
 //        System.out.println(user_infoMapper.selectByPrimaryKey(i));
