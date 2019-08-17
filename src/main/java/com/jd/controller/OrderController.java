@@ -1,15 +1,14 @@
 package com.jd.controller;
 
 import com.jd.enity.*;
+import com.jd.mapper.User_ShopCartMapper;
 import com.jd.service.Address_InfoService;
 import com.jd.service.Order_InfoService;
 import com.jd.service.Product_VersionService;
 import com.jd.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +48,19 @@ public class OrderController {
         return userService.getUserInfo(id);
     }
     @RequestMapping("/api/order/createOrder")
-    public boolean createOrder(Order_Info order_info){
-        return order_infoService.createOrder(order_info);
+    public int createOrder(@RequestBody Order_Info order_info){
+        //插入一条订单信息。
+        int m = order_infoService.createOrder(order_info);
+        System.out.println(m);
+        return m;
+    }
+    @RequestMapping("/api/order/createOrderItem")
+    public boolean createOrderItem(@RequestBody Order_Item order_item){
+        //插入一条订单物品信息
+        return order_infoService.createOrderItem(order_item);
+    }
+    @RequestMapping("/api/order/deleteShopCart")
+    public int deleteShopCart(int userid){
+        return order_infoService.deleteShopCart(userid);
     }
 }

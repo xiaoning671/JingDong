@@ -20,4 +20,6 @@ public interface User_ShopCartMapper {
     int updateByPrimaryKey(User_ShopCart record);
 
     List<User_ShopCart> getShopCartByUserId(int userid);
+
+    int deleteShopCartByStatus(int userid);
 }

@@ -56,6 +56,10 @@
     where u.user_id = #{userid} and pv.product_id = p.id and pi.product_id = p.id and u.status = 1 and u.pversion_id = pv.id
   </select>
 
+  <delete id="deleteShopCartByStatus" parameterType="java.lang.Integer">
+    delete from User_ShopCart where id = #{id,jdbcType=INTEGER} and status = 1
+  </delete>
+
 
 
 

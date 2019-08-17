@@ -421,17 +421,21 @@
 </div>
 
 <script>
+    alert("debug1");
     var userid = 1;
 
     var temp_count = 0;
     var temp_totalprice = 0;
     var temp_cart;
     var temp_addr;
-    var temp_order;
     var temp_pay = 1;
     var temp_transport = 1;
+    var temp_orderid;
+    alert("debug2");
+
 
     $(function () {
+        alert("取用户信息...");
         $.ajax({
             url:"http://127.0.0.1:8080/api/getUserInfo",
             type:"post",
@@ -448,6 +452,7 @@
                 })
             }
         });
+        alert("取用户地址信息");
         $.ajax({
             url:"http://127.0.0.1:8080/api/order/commit/address",
             type:"post",
@@ -471,6 +476,7 @@
                 })
             }
         });
+        alert("取购物车数据...");
         $.ajax({
             url:"http://127.0.0.1:8080/api/order/commit/info",
             type:"post",
@@ -489,7 +495,6 @@
                 })
 
                 for(var i = 0; i<data.length; i=i+1){
-                    alert("处理数据...")
                     temp_count = temp_count + parseInt(data[i].amount);
                     temp_totalprice = temp_totalprice + parseFloat(parseInt(data[i].amount)*parseFloat(data[i].product_version.price));
                 }
@@ -512,30 +517,77 @@
     })
 
     $("#submitorder").click(function () {
-        alert(temp_count);
-        alert(temp_totalprice);
-        alert(temp_cart[0].amount);
 
-        temporder = {
-            userid:userid,
-            address_id:temp_addr.id,
-            pay_id:temp_pay,
-            status_id:1,
-            price:temp_totalprice,
-            transport_id:temp_transport;
+        //定义两个json类
+        var order = function (user_id, address_id,pay_id,status_id,price,transport_id) {
+            this.user_id=user_id;
+            this.address_id=address_id;
+            this.pay_id=pay_id;
+            this.status_id=status_id;
+            this.price=price;
+            this.transport_id=transport_id;
+        };
+        var orderitem = function (order_id,product_id,version_id,amount,price) {
+            this.order_id = order_id;
+            this.product_id = product_id;
+            this.version_id = version_id;
+            this.amount = amount;
+            this.price = price;
         }
+
+        //生成订单，获取订单号
+        var orders = new order(1,1,1,1,8000,1);
         $.ajax({
             url:"http://127.0.0.1:8080/api/order/createOrder",
-            data:{order_info:temp_order},
             type:"post",
+            data:JSON.stringify(orders),
             dataType:"json",
+            contentType : "application/json",
             success:function (data) {
-                if(data == true){
-                    alert("订单生成成功，请尽快支付！");
+                alert("生成订单...");
+                if(data != null){
+                    alert("订单生成成功，请尽快支付！订单号为");
+                    alert(data);
+                    temp_orderid = data;
+                    for(var i=0; i<temp_cart.length; i++){
+                        alert("生成订单物品...");
+                        var m = parseFloat(parseInt(temp_cart[i].amount)*parseFloat(temp_cart[i].product_version.price));
+                        var orderitems = new orderitem(temp_orderid,temp_cart[i].product_version.product_info.id,temp_cart[i].product_version.id,temp_cart[i].amount,m);
+                        $.ajax({
+                            url:"http://127.0.0.1:8080/api/order/createOrderItem",
+                            type:"post",
+                            data:JSON.stringify(orderitems),
+                            dataType:"json",
+                            contentType : "application/json",
+                            success:function (data) {
+                                if(data == true){
+                                    alert("订单物品正常生成！");
+                                    //删除提交的购物车行
+                                    $.ajax({
+                                        url:"http://127.0.0.1:8080/api/order/deleteShopCart",
+                                        type:"post",
+                                        data:{userid:userid},
+                                        dataType:"json",
+                                        success:function (data) {
+                                            if(data == temp_cart.length){
+                                                alert("提交订单操作成功！");
+                                            }else{
+                                                alert("清理购物车失败！");
+                                            }
+                                        }
+                                    })
+                                }else{
+                                    alert("系统错误！");
+                                }
+                                alert("订单完成！");
+                            }
+                        })
+                    }
+                }else {
+                    alert("系统错误...");
                 }
             }
         })
-
     })
 </script>
 
