@@ -43,6 +43,8 @@ a{text-decoration: none; }
 .discount{float: left; clear: left}
 .payment{height: 80px}
 
+#submitorder{height: 50px; width: 150px; float: right; background-color: red; font-size: 20px; font-weight: bold;color: white; border: none; margin-top: 15px; margin-right: -10px}
+
 #third_2_2 {
     width: 908px;
     height: 30px;

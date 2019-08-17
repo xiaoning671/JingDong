@@ -1,10 +1,8 @@
 package com.jd.controller;
 
-import com.jd.enity.Address_Info;
-import com.jd.enity.Product_Version;
-import com.jd.enity.User_Info;
-import com.jd.enity.User_ShopCart;
+import com.jd.enity.*;
 import com.jd.service.Address_InfoService;
+import com.jd.service.Order_InfoService;
 import com.jd.service.Product_VersionService;
 import com.jd.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +23,8 @@ public class OrderController {
     Address_InfoService address_infoService;
     @Autowired
     UserService userService;
+    @Autowired
+    Order_InfoService order_infoService;
 
     @RequestMapping("/api/order/commit/info")
     public List<User_ShopCart> shopcartCommit(int userid){
@@ -47,5 +47,9 @@ public class OrderController {
     @RequestMapping("/api/getUserInfo")
     public User_Info getUserInfo(int id){
         return userService.getUserInfo(id);
+    }
+    @RequestMapping("/api/order/createOrder")
+    public boolean createOrder(Order_Info order_info){
+        return order_infoService.createOrder(order_info);
     }
 }

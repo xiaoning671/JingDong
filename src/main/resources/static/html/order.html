@@ -201,9 +201,8 @@
         <!--  预售 计算支付展现方式 begin -->
         <div class="statistic fr mt20">
             <div class="list">
-                <span><em class="ftx-01">4</em> 件商品，总商品金额：</span>
-                <em class="price" id="warePriceId"
-                    v="24196.00">￥{{price}}</em>
+                <span><em class="ftx-01" id="totalcount">共 {{totalamount}}</em> 件商品，总商品金额：</span>
+                <em class="price" id="warePriceId">￥{{totalcost}}</em>
             </div>
             <div class="list" id="shuifeiId">
                 <span>税费：</span>
@@ -233,23 +232,21 @@
     <div class="trade-foot-detail-com" style="margin-left: 200px; width: 1100px">
         <div class="fc-price-info">
             <span class="price-tit">应付总额：</span>
-            <span class="price-num" id="sumPayPriceId">￥{{price}}</span>
-        </div>
-        <div class="fc-baitiao-info" style="display: none;">
-            <span>白条支付：<em>不分期</em>（不使用优惠）<i class="bt-edit-icon" onclick="javascript:btDetail();" clstag="pageclick|keycount|PaymentLead__2016030411|5"></i></span>
+            <span class="price-num" id="totalmoney">￥{{totalcost}}</span>
         </div>
         <div class="giftbuy-info">
             <label class="noShowMoney hide" id="giftBuyHidePriceDiv">
                 <input type="checkbox" id="giftBuyHidePrice" checked>包装内不显示礼品价格
             </label>
         </div>
-        <div class="fc-consignee-info">
-            <span class="mr20" id="sendAddr">寄送至： {{adds.province}}省 {{adds.city}} {{adds.area}} {{adds.detailAdd}}</span>
-            <span id="sendMobile">收货人：{{adds.receiverName}} {{adds.receiverPhone}}</span>
+        <div class="fc-consignee-info" id="address-bottom">
+            <span class="mr20" id="sendAddr">寄送至： {{addr.address_province.a_pname}} {{addr.address_city.a_cname}} {{addr.address_area.a_areaname}} {{addr.address}}</span>
+            <span id="sendMobile">收货人：{{addr.receiver}} &nbsp {{addr.phone}}</span>
         </div>
+        <div><button id="submitorder">提交订单</button></div>
     </div>
 </div>
-<div id="service-2017" style="margin-top: 50px">
+<div id="service-2017" style="margin-top: 150px">
     <div class="w" style="height: 100px">
         <img src="../images/order/dkhs.png" width="1000px">
     </div>
@@ -425,17 +422,14 @@
 
 <script>
     var userid = 1;
-    var piecenum = 0;
-    var addrnum = 0;
-    var total = 0;
 
-    // var cartlist = new Array();
-    // alert("debug");
-    // cartlist.push(1);
-    // alert("debug22");
-    //
-    // alert(cartlist);
-
+    var temp_count = 0;
+    var temp_totalprice = 0;
+    var temp_cart;
+    var temp_addr;
+    var temp_order;
+    var temp_pay = 1;
+    var temp_transport = 1;
 
     $(function () {
         $.ajax({
@@ -445,7 +439,6 @@
             data:{id:userid},
             //获得用户姓名
             success:function (data) {
-                alert("获取用户数据，显示...")
                 var data1 = new Vue({
                     el:'#username',
                     data:{users:{}},
@@ -461,22 +454,32 @@
             dataType:"json",
             data:{id:userid},
             success:function (data) {
+                temp_addr = data;
                 var data2 = new Vue({
                     el:'#third_2_2',
                     data:{addr:{}},
                     created:function () {
                         this.addr = data;
                     }
+                });
+                var data5 = new Vue({
+                    el:'#address-bottom',
+                    data:{addr:{}},
+                    created:function () {
+                        this.addr = data;
+                    }
                 })
             }
-        })
+        });
         $.ajax({
             url:"http://127.0.0.1:8080/api/order/commit/info",
             type:"post",
             dataType:"json",
             data:{userid:userid},
             success:function (data) {
-                alert("取得购物车数据！");
+
+                temp_cart = data;
+
                 var data3 = new Vue({
                     el:'#product-info',
                     data:{products:[]},
@@ -484,24 +487,55 @@
                         this.products = data;
                     },
                 })
+
+                for(var i = 0; i<data.length; i=i+1){
+                    alert("处理数据...")
+                    temp_count = temp_count + parseInt(data[i].amount);
+                    temp_totalprice = temp_totalprice + parseFloat(parseInt(data[i].amount)*parseFloat(data[i].product_version.price));
+                }
+
+                var data7 = new Vue({
+                    el:'#totalcount',
+                    data:{totalamount:temp_count}
+                })
+
+                var data6 = new Vue({
+                    el:'#totalmoney',
+                    data:{totalcost: temp_totalprice},
+                })
+                var data8 = new Vue({
+                    el:'#warePriceId',
+                    data:{totalcost:temp_totalprice},
+                })
             }
         })
-        // $.ajax({
-        //     url:"http://127.0.0.1:8080/api/order/commit/img",
-        //     type:"post",
-        //     dataType:"json",
-        //     data:{},
-        //     traditional:true,
-        //     success:function (data) {
-        //         var data4 = new Vue({
-        //             el:'#product-info',
-        //             data:{productimgs:[]},
-        //             created:function () {
-        //                 this.productimgs = data;
-        //             },
-        //         })
-        //     }
-        // })
+    })
+
+    $("#submitorder").click(function () {
+        alert(temp_count);
+        alert(temp_totalprice);
+        alert(temp_cart[0].amount);
+
+        temporder = {
+            userid:userid,
+            address_id:temp_addr.id,
+            pay_id:temp_pay,
+            status_id:1,
+            price:temp_totalprice,
+            transport_id:temp_transport;
+        }
+        $.ajax({
+            url:"http://127.0.0.1:8080/api/order/createOrder",
+            data:{order_info:temp_order},
+            type:"post",
+            dataType:"json",
+            success:function (data) {
+                if(data == true){
+                    alert("订单生成成功，请尽快支付！");
+                }
+            }
+        })
+
     })
 </script>
 
