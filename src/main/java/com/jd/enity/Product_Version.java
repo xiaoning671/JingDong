@@ -17,16 +17,6 @@ public class Product_Version {
 
     private Integer weight;
 
-    private Product_Images product_images;
-
-    public Product_Images getProduct_images() {
-        return product_images;
-    }
-
-    public void setProduct_images(Product_Images product_images) {
-        this.product_images = product_images;
-    }
-
     @Override
     public String toString() {
         return "Product_Version{" +
@@ -37,7 +27,6 @@ public class Product_Version {
                 ", stock=" + stock +
                 ", purprice=" + purprice +
                 ", weight=" + weight +
-                ", product_images=" + product_images +
                 '}';
     }
 

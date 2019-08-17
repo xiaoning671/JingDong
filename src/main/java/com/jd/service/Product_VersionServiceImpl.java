@@ -23,7 +23,7 @@ public class Product_VersionServiceImpl implements Product_VersionService {
     Product_ImagesMapper product_imagesMapper;
 
     @Override
-    public List<Product_Version> getPVersionById(int userid) {
+    public List<User_ShopCart> getPVersionById(int userid) {
         //参数为购物车id的列表，先获得商品版本列表
         List<User_ShopCart> vlist = new ArrayList<>();
 //        for(int i = 0; i<list.size(); i++){
@@ -32,14 +32,14 @@ public class Product_VersionServiceImpl implements Product_VersionService {
 //        }
         vlist = user_shopCartMapper.getShopCartByUserId(userid);
 
-        System.out.println(vlist.get(0));
-
-        List<Product_Version> Plist = new ArrayList<Product_Version>();
-        for (int i = 0; i<vlist.size(); i++){
-            Product_Version temp =  product_versionMapper.selectByPrimaryKey(vlist.get(i).getPversion_id());
-            Plist.add(temp);
-        }
-        return Plist;
+//        System.out.println(vlist.get(0));
+//
+//        List<Product_Version> Plist = new ArrayList<Product_Version>();
+//        for (int i = 0; i<vlist.size(); i++){
+//            Product_Version temp =  product_versionMapper.selectByPrimaryKey(vlist.get(i).getPversion_id());
+//            Plist.add(temp);
+//        }
+        return vlist;
     }
 
     @Override

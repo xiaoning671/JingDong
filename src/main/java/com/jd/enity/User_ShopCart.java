@@ -7,6 +7,8 @@ public class User_ShopCart {
 
     private Integer produce_id;
 
+    private Product_Version product_version;
+
     private Integer pversion_id;
 
     private Integer amount;
@@ -17,9 +19,18 @@ public class User_ShopCart {
                 "id=" + id +
                 ", user_id=" + user_id +
                 ", produce_id=" + produce_id +
+                ", product_version=" + product_version +
                 ", pversion_id=" + pversion_id +
                 ", amount=" + amount +
                 '}';
+    }
+
+    public Product_Version getProduct_version() {
+        return product_version;
+    }
+
+    public void setProduct_version(Product_Version product_version) {
+        this.product_version = product_version;
     }
 
     public Integer getId() {

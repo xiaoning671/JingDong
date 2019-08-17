@@ -3,6 +3,7 @@ package com.jd.controller;
 import com.jd.enity.Address_Info;
 import com.jd.enity.Product_Version;
 import com.jd.enity.User_Info;
+import com.jd.enity.User_ShopCart;
 import com.jd.service.Address_InfoService;
 import com.jd.service.Product_VersionService;
 import com.jd.service.UserService;
@@ -26,8 +27,9 @@ public class OrderController {
     UserService userService;
 
     @RequestMapping("/api/order/commit/info")
-    public List<Product_Version> shopcartCommit(int userid){
-        //提交参数为购物车id列表，返回值为商品版本信息(附带图片)
+    public List<User_ShopCart> shopcartCommit(int userid){
+        //提交参数为用户id，返回值为购物车待结算信息(附带商品信息和图片)
+        System.out.println("debug1");
         return product_versionService.getPVersionById(userid);
     }
     @RequestMapping("/api/order/commit/img")

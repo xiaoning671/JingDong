@@ -152,11 +152,11 @@
             </div>
             <div class="product">
                 <div style="font-weight: bold; margin-left: 15px; font-size: 13px; margin-top: 15px">商家：京东自营</div>
-                <div class="product-goods" id="product-info" v-for="product in products" v-for="productimg in productimgs">
+                <div class="product-goods" id="product-info" v-for="product in products" >
                     <img id="product-image" height="140px" style="float: left; padding: 30px 30px 20px 20px" src="https://img10.360buyimg.com/cms/s80x80_jfs/t1/68251/30/6535/298302/5d4b8bb8E86020fc2/de5e39a2420c3f30.jpg">
                     <div class="product-descrip">
-                        <div class="product-title" style="height: 50px;">{{product.product_info.title}}</div><br>
-                        <div style="font-weight: bold; float: left">颜色：<div style="float:right; font-weight: normal; width:150px;  text-overflow:ellipsis; white-space:nowrap; overflow:hidden;">{{product.name}}</div></div>
+                        <div class="product-title" style="height: 50px;">{{product.product_version.product_info.title}}</div><br>
+                        <div style="font-weight: bold; float: left">颜色：<div style="float:right; font-weight: normal; width:150px;  text-overflow:ellipsis; white-space:nowrap; overflow:hidden;">{{product.product_version.name}}</div></div>
 <!--                        <div style="margin-top:15px; font-weight: bold; float: left">尺码：<div style="float:right; font-weight: normal; width:150px;  text-overflow:ellipsis; white-space:nowrap; overflow:hidden;">盒装国行解锁版</div></div><br>-->
                         <div class="third_2_7_2_2_6" style="float: left; clear: left; font-size: 13px; margin-top: 15px">
                             <img src="../images/order/xx.png">
@@ -164,10 +164,10 @@
                         </div>
                     </div>
                     <div class="product-price">
-                        <div class="product-descrip-price">￥{{product.price}}</div>
-                        <div class="product-descrip-weight">{{product.weight}}g</div>
+                        <div class="product-descrip-price">￥{{product.product_version.price}}</div>
+                        <div class="product-descrip-weight">{{product.product_version.weight}}g</div>
                     </div>
-                    <div class="product-count">x1</div>
+                    <div class="product-count">x{{product.amount}}</div>
                     <div class="product-status">有货</div>
                 </div>
             </div>
