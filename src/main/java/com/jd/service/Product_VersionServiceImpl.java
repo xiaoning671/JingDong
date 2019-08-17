@@ -9,7 +9,6 @@ import com.jd.mapper.User_ShopCartMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,18 +23,19 @@ public class Product_VersionServiceImpl implements Product_VersionService {
     Product_ImagesMapper product_imagesMapper;
 
     @Override
-    public List<Product_Version> getPVersionById(List<Integer> list) {
+    public List<Product_Version> getPVersionById(int userid) {
         //参数为购物车id的列表，先获得商品版本列表
         List<User_ShopCart> vlist = new ArrayList<>();
-        for(int i = 0; i<list.size(); i++){
-            User_ShopCart temp = user_shopCartMapper.selectByPrimaryKey(list.get(i));
-             vlist.add(temp);
-        }
+//        for(int i = 0; i<list.size(); i++){
+//            User_ShopCart temp = user_shopCartMapper.selectByPrimaryKey(list.get(i));
+//             vlist.add(temp);
+//        }
+        vlist = user_shopCartMapper.getShopCartByUserId(userid);
 
         System.out.println(vlist.get(0));
 
         List<Product_Version> Plist = new ArrayList<Product_Version>();
-        for (int i = 0; i<list.size(); i++){
+        for (int i = 0; i<vlist.size(); i++){
             Product_Version temp =  product_versionMapper.selectByPrimaryKey(vlist.get(i).getPversion_id());
             Plist.add(temp);
         }

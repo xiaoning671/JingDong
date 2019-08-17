@@ -11,6 +11,17 @@ public class Product_Images {
 
     private String descrip;
 
+    @Override
+    public String toString() {
+        return "Product_Images{" +
+                "id=" + id +
+                ", product_id=" + product_id +
+                ", version_id=" + version_id +
+                ", url='" + url + '\'' +
+                ", descrip='" + descrip + '\'' +
+                '}';
+    }
+
     public Integer getId() {
         return id;
     }

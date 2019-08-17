@@ -17,6 +17,9 @@
     from User_ShopCart
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="getShopCartByUserId" parameterType="java.lang.Integer" resultMap="User_ShopCartResultMap">
+    select * from User_ShopCart where user_id = #{userid} and status = 1
+  </select>
 
 
 

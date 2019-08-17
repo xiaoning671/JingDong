@@ -153,7 +153,7 @@
             <div class="product">
                 <div style="font-weight: bold; margin-left: 15px; font-size: 13px; margin-top: 15px">商家：京东自营</div>
                 <div class="product-goods" id="product-info" v-for="product in products" v-for="productimg in productimgs">
-                    <img id="product-image" height="140px" style="float: left; padding: 30px 30px 20px 20px" src={{productimg}}>
+                    <img id="product-image" height="140px" style="float: left; padding: 30px 30px 20px 20px" src="https://img10.360buyimg.com/cms/s80x80_jfs/t1/68251/30/6535/298302/5d4b8bb8E86020fc2/de5e39a2420c3f30.jpg">
                     <div class="product-descrip">
                         <div class="product-title" style="height: 50px;">{{product.product_info.title}}</div><br>
                         <div style="font-weight: bold; float: left">颜色：<div style="float:right; font-weight: normal; width:150px;  text-overflow:ellipsis; white-space:nowrap; overflow:hidden;">{{product.name}}</div></div>
@@ -474,9 +474,9 @@
             url:"http://127.0.0.1:8080/api/order/commit/info",
             type:"post",
             dataType:"json",
-            data:{},
-            traditional:true,
+            data:{userid:userid},
             success:function (data) {
+                alert("取得购物车数据！");
                 var data3 = new Vue({
                     el:'#product-info',
                     data:{products:[]},
@@ -486,22 +486,22 @@
                 })
             }
         })
-        $.ajax({
-            url:"http://127.0.0.1:8080/api/order/commit/img",
-            type:"post",
-            dataType:"json",
-            data:{},
-            traditional:true,
-            success:function (data) {
-                var data4 = new Vue({
-                    el:'#product-info',
-                    data:{productimgs:[]},
-                    created:function () {
-                        this.productimgs = data;
-                    },
-                })
-            }
-        })
+        // $.ajax({
+        //     url:"http://127.0.0.1:8080/api/order/commit/img",
+        //     type:"post",
+        //     dataType:"json",
+        //     data:{},
+        //     traditional:true,
+        //     success:function (data) {
+        //         var data4 = new Vue({
+        //             el:'#product-info',
+        //             data:{productimgs:[]},
+        //             created:function () {
+        //                 this.productimgs = data;
+        //             },
+        //         })
+        //     }
+        // })
     })
 </script>
 

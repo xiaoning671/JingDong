@@ -26,11 +26,9 @@ public class OrderController {
     UserService userService;
 
     @RequestMapping("/api/order/commit/info")
-    public List<Product_Version> shopcartCommit(){
-        //提交参数为购物车id列表，返回值为商品版本信息
-        List<Integer> test = new ArrayList<>();
-        test.add(1);
-        return product_versionService.getPVersionById(test);
+    public List<Product_Version> shopcartCommit(int userid){
+        //提交参数为购物车id列表，返回值为商品版本信息(附带图片)
+        return product_versionService.getPVersionById(userid);
     }
     @RequestMapping("/api/order/commit/img")
     public List<String> shopCartCommitGetImgUrl(){
