@@ -55,6 +55,8 @@
                     $.ajax({
                         url:"http://localhost:8080/registered",
                         success:function (data) {
+                            document.cookie = "cookie_userid = data.id";
+                            document.cookie = "cookie_username = data.name";
                             alert(data);
                             window.location.href="https://www.baidu.com";  //************跳转到注册界面
                         }
