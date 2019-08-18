@@ -7,6 +7,7 @@
 <!--    <result column="produce_id" jdbcType="INTEGER" property="produce_id" />-->
     <result column="pversion_id" jdbcType="INTEGER" property="pversion_id" />
     <result column="amount" jdbcType="INTEGER" property="amount" />
+    <association property="product_info" resultMap="Product_InfoResultMap" ></association>
     <association property="product_version" resultMap="Product_VersionResultMap"></association>
   </resultMap>
 
@@ -39,6 +40,17 @@
     <result column="url" jdbcType="VARCHAR" property="url" />
     <result column="descrip" jdbcType="VARCHAR" property="descrip" />
   </resultMap>
+
+<!--购物车部分-->
+  <select id="getAllShopCart"  parameterType="java.lang.Integer" resultMap="User_ShopCartResultMap" >
+     select s.id, p.title,v.name,v.purprice,s.amount from User_Info u, Product_Info p,Product_Version v,User_ShopCart s
+     where s.user_id = u.id and s.produce_id = p.id and s.pversion_id = v.id and s.user_id = #{user_id}
+  </select>
+  <delete id="cartDel" parameterType="java.lang.Integer">
+    delete from User_ShopCart where id = #{id}
+  </delete>
+
+
 
   <sql id="Base_Column_List">
     id, user_id, produce_id, pversion_id, amount
