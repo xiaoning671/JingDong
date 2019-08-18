@@ -3,8 +3,11 @@ package com.jd.mapper;
 import com.jd.enity.User_Info;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface User_InfoMapper {
+    List<User_Info> getAllUser();
     User_Info checkByName_Password(User_Info record);
 
     int deleteByPrimaryKey(Integer id);

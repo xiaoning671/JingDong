@@ -28,6 +28,10 @@
     defaultaddress from User_Info where id= #{id}
 
   </select>
+<!--  获取所有用户信息-->
+  <select id="getAllUser" resultMap="BaseResultMap">
+    select * from User_Info;
+  </select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
