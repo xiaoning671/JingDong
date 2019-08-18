@@ -42,15 +42,13 @@
   </resultMap>
 
 <!--购物车部分-->
-  <select id="getAllShopCart"  parameterType="java.lang.Integer" resultMap="User_ShopCartResultMap" >
+  <select id="getAllShopCart"  parameterType="java.lang.Integer" resultMap="User_ShopCartResultMap1" >
      select s.id, p.title,v.name,v.purprice,s.amount from User_Info u, Product_Info p,Product_Version v,User_ShopCart s
      where s.user_id = u.id and s.produce_id = p.id and s.pversion_id = v.id and s.user_id = #{user_id}
   </select>
   <delete id="cartDel" parameterType="java.lang.Integer">
     delete from User_ShopCart where id = #{id}
   </delete>
-
-
 
   <sql id="Base_Column_List">
     id, user_id, produce_id, pversion_id, amount
