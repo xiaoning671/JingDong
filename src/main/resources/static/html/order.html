@@ -421,6 +421,41 @@
     </div>
 </div>
 
+<!--<div id="add">-->
+<!--    <div class="row1">-->
+<!--        新增收货人信息<a href="javascript:void(0)" title="关闭窗口" class="close_btn" id="closeBtn">×</a>-->
+<!--    </div>-->
+<!--    <form id="bigbox">-->
+<!--        <div id="one">-->
+<!--            <span>所在省</span>-->
+<!--            <input name="sheng" type="text">-->
+<!--        </div>-->
+<!--        <div class="twe">-->
+<!--            <span>所在市</span>-->
+<!--            <input name="shi" type="text">-->
+<!--        </div>-->
+<!--        <div class="twe">-->
+<!--            <span>所在区</span>-->
+<!--            <input name="qu" type="text">-->
+<!--        </div>-->
+<!--        <div class="twe">-->
+<!--            <span>收货人姓名</span>-->
+<!--            <input name="rname" type="text">-->
+<!--        </div>-->
+<!--        <div class="twe">-->
+<!--            <span>详细地址</span>-->
+<!--            <input name="addde" type="text">-->
+<!--        </div>-->
+<!--        <div class="twe">-->
+<!--            <span>收货人手机号</span>-->
+<!--            <input name="rphone" type="text">-->
+<!--        </div>-->
+<!--        <div class="twe">-->
+<!--            <input name="insert" id="infor" type="submit" value="保存收货人信息">-->
+<!--        </div>-->
+<!--    </form>-->
+<!--</div>-->
+
 <script>
     var userid = 1;
     var temp_count = 0;
@@ -873,6 +908,22 @@
         })
     })
 
+    //获取cookie
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
 </script>
 
 </body>
