@@ -21,6 +21,25 @@ public class Product_Info {
     private String warranty_data;
 
     private Integer status_id;
+
+    public int getBig() {
+        return big;
+    }
+
+    public void setBig(int big) {
+        this.big = big;
+    }
+
+    public int getSmall() {
+        return small;
+    }
+
+    public void setSmall(int small) {
+        this.small = small;
+    }
+
+    private int big;
+    private int small;
     private Product_BigClass sid_big;
     private Product_SmallClass sid_small;
 
@@ -34,7 +53,6 @@ public class Product_Info {
         this.product_images = product_images;
     }
 
-
     @Override
     public String toString() {
         return "Product_Info{" +
@@ -44,10 +62,13 @@ public class Product_Info {
                 ", create_time=" + create_time +
                 ", min_price=" + min_price +
                 ", discount='" + discount + '\'' +
-                ", warranty_data=" + warranty_data +
+                ", warranty_data='" + warranty_data + '\'' +
                 ", status_id=" + status_id +
+                ", big=" + big +
+                ", small=" + small +
                 ", sid_big=" + sid_big +
                 ", sid_small=" + sid_small +
+                ", product_images=" + product_images +
                 '}';
     }
 
