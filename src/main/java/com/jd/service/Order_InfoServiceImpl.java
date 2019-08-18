@@ -8,6 +8,8 @@ import com.jd.mapper.User_ShopCartMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class Order_InfoServiceImpl implements Order_InfoService {
 
@@ -41,6 +43,9 @@ public class Order_InfoServiceImpl implements Order_InfoService {
 
     @Override
     public int deleteShopCart(int userid) {
-        return user_shopCartMapper.deleteShopCartByStatus(userid);
+        return user_shopCartMapper.deleteShopCartByStatus(userid);}
+    @Override
+    public List<Order_Info> getAllOrder() {
+        return order_infoMapper.getAllOrder();
     }
 }

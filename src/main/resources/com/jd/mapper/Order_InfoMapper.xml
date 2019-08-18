@@ -18,6 +18,10 @@
     id, user_id, address_id, pay_id, status_id, price, transport_id, create_date, pay_date, 
     confirm_date, remark
   </sql>
+  <select id="getAllOrder" resultMap="BaseResultMap">
+    select * from Order_Info;
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

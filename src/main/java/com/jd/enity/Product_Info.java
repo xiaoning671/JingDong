@@ -1,5 +1,7 @@
 package com.jd.enity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -9,16 +11,18 @@ public class Product_Info {
     private String name;
 
     private String title;
-
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date create_time;
 
     private BigDecimal min_price;
 
     private String discount;
 
-    private Date warranty_data;
+    private String warranty_data;
 
     private Integer status_id;
+    private Product_BigClass sid_big;
+    private Product_SmallClass sid_small;
 
     private Product_Images product_images;
 
@@ -42,6 +46,8 @@ public class Product_Info {
                 ", discount='" + discount + '\'' +
                 ", warranty_data=" + warranty_data +
                 ", status_id=" + status_id +
+                ", sid_big=" + sid_big +
+                ", sid_small=" + sid_small +
                 '}';
     }
 
@@ -93,11 +99,11 @@ public class Product_Info {
         this.discount = discount == null ? null : discount.trim();
     }
 
-    public Date getWarranty_data() {
+    public String getWarranty_data() {
         return warranty_data;
     }
 
-    public void setWarranty_data(Date warranty_data) {
+    public void setWarranty_data(String warranty_data) {
         this.warranty_data = warranty_data;
     }
 

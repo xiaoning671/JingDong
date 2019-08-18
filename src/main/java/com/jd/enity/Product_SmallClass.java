@@ -7,6 +7,15 @@ public class Product_SmallClass {
 
     private Integer bigclass_id;
 
+    @Override
+    public String toString() {
+        return "Product_SmallClass{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", bigclass_id=" + bigclass_id +
+                '}';
+    }
+
     public Integer getId() {
         return id;
     }

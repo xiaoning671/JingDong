@@ -146,8 +146,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Tanmay</td><td>Bangalore</td><td>560001</td><td><a>修改</a>|<a>删除</a></td>
+                <tr v-for="(second,index) in smallClass">
+                    <td>{{second.id}}</td><td>{{second.name}}</td><td>{{second.bigclass_id}}</td><td><a @click="alter">修改</a>|<a @click="del(index)">删除</a></td>
                 </tr>
                 </tbody>
             </table>
@@ -160,9 +160,6 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>1</td><td>Bangalore</td><td>bigclass</td>
-                </tr>
                 <tr>
                     <td><input type="text" name="in2_num"></td>
                     <td><input type="text" name="in2_kind"></td>
@@ -179,7 +176,7 @@
                 <caption>商品添加</caption>
                 <thead >
                 <tr>
-                    <th>商品名字</th><th>商品标题</th><th>最低价格</th><th>折扣</th><th>保证期限</th><th>商品状态</th>
+                    <th>商品名字</th><th>商品标题</th><th>最低价格</th><th>折扣</th><th>保证期限</th><th>商品状态</th><th>商品大类</th><th>商品小类</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -187,7 +184,11 @@
                     <td> <input type="text" name="produce_add_name" size="10px"></td><td><input type="text"name="produce_add_title" size="10px"></td>
                     <td>  <input type="text" name="produce_add_minprice"size="10px"></td><td><input type="text"name="produce_add_sum"size="10px"></td>
                     <td>  <input type="date" name="produce_add_warranty"size="10px"></td><td><input type="text"name="produce_add_status"size="10px"></td>
-                    <td> <input type="button" value="提交">
+                    <td>  <input type="text" name="produce_alter_bigclass" size="10px"></td><td><input type="text" name="produce_alter_smallclass" size="10px"></td>
+
+                </tr>
+                <tr>
+                    <td> <input name="add_pro" type="button" value="提交数据"> <td><input name="clear_pro" type="button"value="清空重输"></td>
                 </tr>
                 </tbody>
             </table>
@@ -211,7 +212,7 @@
                 <caption>商品属性修改</caption>
                 <thead >
                 <tr>
-                    <th>商品名字</th><th>商品标题</th><th>最低价格</th><th>折扣</th><th>保证期限</th><th>商品状态</th>
+                    <th>商品名字</th><th>商品标题</th><th>最低价格</th><th>折扣</th><th>保证期限</th><th>商品状态</th><th>商品大类</th><th>商品小类</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -219,27 +220,29 @@
                     <td><input type="text" name="produce_alter_name"size="10px"></td><td><input type="text"name="produce_alter_title"size="10px"></td>
                     <td> <input type="text" name="produce_alter_minprice"size="10px"></td><td><input type="text"name="produce_alter_sum"size="10px"></td>
                     <td> <input type="date" name="produce_alter_warranty"size="10px"></td><td><input type="text"name="produce_alter_status"size="10px"></td>
-                    <td><input type="button" value="提交">
+                    <td><input type="text" name="produce_alter_bigclass"></td><td><input type="text" name="produce_alter_smallclass"></td>
                 </tr>
+                <tr><td><input name="alt_product" type="button" value="提交修改"></td><td><input name="alt_clear" type="button" value="清空重输"></td></tr>
                 </tbody>
             </table>
             <table class="table table-hover " id="disp_produce_select">  <!--商品查询-->
                 <caption>商品查询</caption>
                 <thead >
                 <tr>
-                    <th>商品id</th><th>商品名字</th><th>商品标题</th><th>创建时间</th><th>最低价格</th><th>折扣</th><th>保证期限</th><th>商品状态</th>
+                    <th>商品id</th><th>商品名字</th><th>商品标题</th><th>创建时间</th><th>最低价格</th><th>折扣</th><th>保证期限</th><th>商品状态</th><th>大类</th><th>小类</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>商品id</td><td>商品名字</td><td>商品标题</td><td>创建时间</td><td>最低价格</td><td>折扣</td><td>保证期限</td><td>商品状态</td>
+                <tr v-for="product in products">
+                    <td>{{product.id}}</td><td>{{product.name}}</td><td>{{product.title}}</td><td>{{product.create_time}}</td><td>{{product.min_price}}</td><td>{{product.discount}}</td>
+                    <td>{{product.warranty_data}}</td><td>{{product.status_id}}</td>
                 </tr>
                 </tbody>
             </table>
             <!--*********************商品管理over***************************-->
 
             <table class="table table-hover " id="disp_order_alter">  <!--订单修改-->
-                <caption>商品属性修改</caption>
+                <caption>订单修改(有：则覆盖修改，无：则添加数据)</caption>
                 <thead>
                 <tr>
                     <th>订单id</th><th>用户的id</th><th>地址id</th><th>支付id</th><th>状态id</th><th>价格</th><th>流水号id</th><th>订单创建时间</th><th>订单支付时间</th><th>收货时间</th><th>评论</th>
@@ -254,7 +257,11 @@
                     <td><input type="date"style="width: 100px"></td><td><input type="date"size="2px"style="width: 100px"></td>
                     <td><input type="text"size="2px"></td>
                 </tr>
-                <tr><td><input type="button" value="提交修改"size="2px"></td></tr>
+                <tr><td><input name="change_order" type="button" value="提交修改"size="2px"></td>
+                    <td><input name="clear_order" type="button" value="清空重输"size="2px"></td>
+                </tr>
+                <tr><td><p>删除依据输入的 订单id:(其余信息无效)</p></td><td><input name="del_order" type="button" value="删除订单"size="2px"></td>
+                </tr>
                 </tbody>
             </table>
             <table class="table table-hover " id="disp_order_select">  <!--订单查询-->
@@ -265,8 +272,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>订单id</td><td>用户的id</td><td>地址id</td><td>支付id</td><td>状态id</td><td>价格</td><td>流水号id</td><td>订单创建时间</td><td>订单支付时间</td><td>收货时间</td><td>评论</td>
+                <tr v-for="order in orders">
+                    <td>{{order.id}}</td><td>{{order.user_id}}</td><td>{{order.address_id}}</td><td>{{order.pay_id}}</td><td>{{order.status_id}}</td><td>{{order.price}}</td><td>{{order.transport_id}}</td><td>{{order.create_date}}</td><td>{{order.pay_date}}</td><td>{{order.confirm_date}}</td><td>{{order.remark}}</td>
                 </tr>
                 </tbody>
             </table>
@@ -280,8 +287,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>id</td><td>姓名</td><td>邮箱</td><td>电话</td><td>密码</td><td>身份证</td><td>生日</td><td>性别</td><td>vip</td><td>开户日期</td><td>状态</td><td>默认地址</td>
+                <tr v-for="user in users">
+                    <td>{{user.id}}</td><td>{{user.name}}</td><td>{{user.email}}</td><td>{{user.phone}}</td><td>{{user.password}}</td><td>{{user.idcard}}</td><td>{{user.birthday}}</td><td>{{user.sex}}</td><td>{{user.vip}}</td><td>{{(user.create_date)}}</td><td>{{user.status}}</td><td>{{user.defaultaddress}}</td>
                 </tr>
                 </tbody>
             </table>
@@ -308,7 +315,7 @@
                 </tbody>
             </table>
             <table class="table table-hover " id="disp_user_add"> <!--增加账户-->
-                <caption>账户信息修改</caption>
+                <caption>增加账户</caption>
                 <thead>
                 <tr>
                     <th>id</th><th>姓名</th><th>邮箱</th><th>电话</th><th>密码</th><th>身份证</th><th>生日</th><th>性别</th><th>vip</th><th>开户日期</th><th>状态</th><th>默认地址</th>
@@ -323,17 +330,17 @@
                     <td><input type="text" size="10px"></td><td><input type="date" style="width:100px;"></td>
                     <td><input type="text" size="10px"></td><td><input type="text" size="10px"></td>
                 </tr>
-                <tr><td><input type="button" value="确认提交"></td></tr>
+                <tr><td><input type="button" value="确认提交" name="user_add"></td><td><input type="button" value="清除重输" name="add_user_cleaer"></td></tr>
                 </tbody>
             </table>
 
             <table class="table table-hover " id="disp_user_del"> <!--******* 注销账户-->
-                <caption>账户信息修改</caption>
+                <caption>注销账户</caption>
                 <thead>
-                <tr><td>输入注销的用户id： <input type="text" ></td></tr>
+                <tr><td>请输入注销的用户id： <input type="text" name="del_user" ></td></tr>
                 </thead>
                 <tbody>
-                <tr><td><input type="button" value="确认提交"></td></tr>
+                <tr><td><input type="button" value="确认提交" name="user_del"></td></tr>
                 </tbody>
             </table>
         </div>
