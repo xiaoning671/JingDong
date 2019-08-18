@@ -13,7 +13,13 @@ public class UserServiceImpl implements UserService {
     User_InfoMapper user_infoMapper;
     @Override
     public User_Info checkUser(User_Info user) {
+
         User_Info own=user_infoMapper.checkByName_Password(user);
+        if(own==null){
+            own=new User_Info();
+            own.setId(-1);
+//            System.out.println("对不起，用户找不到");
+        }
         return own;
     }
 
@@ -37,15 +43,5 @@ public class UserServiceImpl implements UserService {
         if(user_infoMapper.insert(add)==1)return true;
         return false;
     }
-//    @Override
-//    public User_Info test(int i) {
-//        System.out.println(user_infoMapper.selectByPrimaryKey(i));
-//        return  user_infoMapper.selectByPrimaryKey(i);
-//    }
-//    @Override
-//    public User_Info test(int i) {
-//        User_Info user=user_infoMapper.select_id(i);
-//        System.out.println(user);
-//        return user;
-//    }
+
 }

@@ -21,7 +21,7 @@
   </sql>
 
   <select id="checkByName_Password" parameterType="com.jd.enity.User_Info" resultMap="BaseResultMap">
-    select *   from User_Info where (name=#{name} and password=#{password})or(name=#{name} and password=#{password}) or(phone=#{name}and password=#{password});
+    select *   from User_Info where (name=#{name} and password=#{password})or(email=#{name} and password=#{password}) or(phone=#{name}and password=#{password});
   </select>
   <select id="select_id" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select id, name, email, phone, password, idcard, birthday, sex, vip, create_date, status,
