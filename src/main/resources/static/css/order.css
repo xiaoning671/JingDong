@@ -25,8 +25,8 @@ a{text-decoration: none; }
 .choose-pay input{border-color: #666666; width: 50px; height: 30px; height: 18px; color: black; line-height: 30px}
 
 .express-list{height: auto; width: 1120px; margin-top: 10px; background-color: #c3e6cb}
-.express{height: 527px; width: 371px; clear: left; margin-left: 35px; background-color: #cccccc; float: left}
-.product{height: auto; width: 680px; background-color: #d1ecf1; float: left}
+.express{height: 450px; width: 371px; clear: left; margin-left: 35px; background-color: #cccccc; float: left}
+.product{height: 450px; width: 680px; background-color: #d1ecf1; float: left}
 
 .list-blackfont{color: #666666; font-size: 14px; line-height: 40px; margin-left: 25px; margin-top: 20px; font-weight: bold}
 .thwy input{width: 50px; font-size: 14px; color: #666666}
@@ -116,7 +116,7 @@ a{text-decoration: none; }
     margin-left: 80px;
 }
 
-.third_2_5_1 {
+.paytype-no {
     width: 100px;
     height: 30px;
     padding: 5px 24px;
@@ -126,7 +126,7 @@ a{text-decoration: none; }
     margin-left: 20px;
 }
 
-.third_2_5_2 {
+.paytype-yes {
     border: red 2px solid;
     width: 100px;
     height: 30px;
@@ -137,7 +137,7 @@ a{text-decoration: none; }
     background-color: white;
 }
 
-.third_2_7_1_1 {
+.transporttype-no {
     width: 100px;
     height: 30px;
     margin-top: 10px;
@@ -145,7 +145,7 @@ a{text-decoration: none; }
     text-align: center;
     border: white 1px solid;
 }
-.third_2_7_1_2 {
+.transporttype-yes {
     width: 100px;
     height: 30px;
     margin-top: 10px;

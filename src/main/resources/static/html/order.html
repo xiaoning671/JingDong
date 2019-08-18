@@ -88,11 +88,12 @@
         <div class="orderhead">
             <span style="margin-left: 40px; line-height: 40px; float: left; clear: left" class="blackfont">支付方式</span>
             <div id="third_2_5">
-                <a><button class="third_2_5_2">京东钱包</button></a>
-                <a><button class="third_2_5_1">支付宝</button></a>
-                <a><button class="third_2_5_1">微信支付</button></a>
-                <a><button class="third_2_5_1">银行卡</button></a>
-                <a><button class="third_2_5_1">京东白条</button></a>
+                <a><button class="paytype-no" id="paytype1">京东钱包</button></a>
+                <a><button class="paytype-yes" id="paytype2">支付宝</button></a>
+                <a><button class="paytype-no" id="paytype3">微信支付</button></a>
+                <a><button class="paytype-no" id="paytype4">银行卡</button></a>
+                <a><button class="paytype-no" id="paytype5">云闪付</button></a>
+                <a><button class="paytype-no" id="paytype6">京东白条</button></a>
             </div>
         </div>
         <!--        <div class="hr" style="margin-top: 15px"></div>-->
@@ -104,7 +105,7 @@
             <a href="#"><span style="margin-right: 50px; line-height: 40px; float: right;" class="bluefont">返回修改购物车</span></a>
         </div>
         <div class="express-list">
-            <div class="express">
+            <div class="express" id="list-left">
                 <div class="kdgs">
                     <div class="listhead">
                         <span class="list-blackfont">配送方式</span>
@@ -113,19 +114,19 @@
                     <div style="height: 30px">
                         <ul style="float: left; margin-left: 55px">
                             <li style="list-style:none; float: left; width: 150px;">
-                                <button class="third_2_7_1_1">京东快递</button>
+                                <button class="transporttype-yes" id="transporttype-1">京东快递</button>
                             </li>
                             <li style="list-style:none; float: left; width: 150px;">
-                                <button class="third_2_7_1_2">顺丰快递</button>
+                                <button class="transporttype-no" id="transporttype-2">顺丰快递</button>
                             </li>
                             <li style="list-style:none; float: left; width: 150px;">
-                                <button class="third_2_7_1_1">德邦物流</button>
+                                <button class="transporttype-no" id="transporttype-3">EMS</button>
                             </li>
                             <li style="list-style:none; float: left; width: 150px;">
-                                <button class="third_2_7_1_1">申通快递</button>
+                                <button class="transporttype-no" id="transporttype-4">申通快递</button>
                             </li>
                             <li style="list-style:none; float: left; width: 150px;">
-                                <button class="third_2_7_1_1">EMS</button>
+                                <button class="transporttype-no" id="transporttype-5">德邦物流</button>
                             </li>
                         </ul>
                     </div>
@@ -150,7 +151,7 @@
                     <span style="margin-left: 10px; font-size: 14px; color: #999999; ">7.777kg</span>
                 </div>
             </div>
-            <div class="product">
+            <div class="product" id="list-right">
                 <div style="font-weight: bold; margin-left: 15px; font-size: 13px; margin-top: 15px">商家：京东自营</div>
                 <div class="product-goods" id="product-info" v-for="product in products" >
                     <img id="product-image" height="140px" style="float: left; padding: 30px 30px 20px 20px" src="https://img10.360buyimg.com/cms/s80x80_jfs/t1/68251/30/6535/298302/5d4b8bb8E86020fc2/de5e39a2420c3f30.jpg">
@@ -421,19 +422,293 @@
 </div>
 
 <script>
-    alert("debug1");
     var userid = 1;
-
     var temp_count = 0;
     var temp_totalprice = 0;
     var temp_cart;
     var temp_addr;
-    var temp_pay = 1;
+    var temp_pay = 2;
     var temp_transport = 1;
     var temp_orderid;
-    alert("debug2");
+    var temp_num = 1;
 
+    //修改付款方式，默认1
+    $(function () {
+        $("#paytype1").click(function () {
+            if($("#paytype1").hasClass('paytype-no')){
+                $("#paytype1").removeClass('paytype-no');
+                $("#paytype1").addClass('paytype-yes');
+            }
+            if($("#paytype2").hasClass('paytype-yes')){
+                $("#paytype2").removeClass('paytype-yes');
+                $("#paytype2").addClass('paytype-no');
+            }
+            if($("#paytype3").hasClass('paytype-yes')){
+                $("#paytype3").removeClass('paytype-yes');
+                $("#paytype3").addClass('paytype-no');
+            }
+            if($("#paytype4").hasClass('paytype-yes')){
+                $("#paytype4").removeClass('paytype-yes');
+                $("#paytype4").addClass('paytype-no');
+            }
+            if($("#paytype5").hasClass('paytype-yes')){
+                $("#paytype5").removeClass('paytype-yes');
+                $("#paytype5").addClass('paytype-no');
+            }
+            if($("#paytype6").hasClass('paytype-yes')){
+                $("#paytype6").removeClass('paytype-yes');
+                $("#paytype6").addClass('paytype-no');
+            }
+            temp_pay = 1;
+            alert(temp_pay);
+        })
+        $("#paytype2").click(function () {
+            if($("#paytype2").hasClass('paytype-no')){
+                $("#paytype2").removeClass('paytype-no');
+                $("#paytype2").addClass('paytype-yes');
+            }
+            if($("#paytype1").hasClass('paytype-yes')){
+                $("#paytype1").removeClass('paytype-yes');
+                $("#paytype1").addClass('paytype-no');
+            }
+            if($("#paytype3").hasClass('paytype-yes')){
+                $("#paytype3").removeClass('paytype-yes');
+                $("#paytype3").addClass('paytype-no');
+            }
+            if($("#paytype4").hasClass('paytype-yes')){
+                $("#paytype4").removeClass('paytype-yes');
+                $("#paytype4").addClass('paytype-no');
+            }
+            if($("#paytype5").hasClass('paytype-yes')){
+                $("#paytype5").removeClass('paytype-yes');
+                $("#paytype5").addClass('paytype-no');
+            }
+            if($("#paytype6").hasClass('paytype-yes')){
+                $("#paytype6").removeClass('paytype-yes');
+                $("#paytype6").addClass('paytype-no');
+            }
+            temp_pay = 2;
+            alert(temp_pay);
+        })
+        $("#paytype3").click(function () {
+            if($("#paytype3").hasClass('paytype-no')){
+                $("#paytype3").removeClass('paytype-no');
+                $("#paytype3").addClass('paytype-yes');
+            }
+            if($("#paytype1").hasClass('paytype-yes')){
+                $("#paytype1").removeClass('paytype-yes');
+                $("#paytype1").addClass('paytype-no');
+            }
+            if($("#paytype2").hasClass('paytype-yes')){
+                $("#paytype2").removeClass('paytype-yes');
+                $("#paytype2").addClass('paytype-no');
+            }
+            if($("#paytype4").hasClass('paytype-yes')){
+                $("#paytype4").removeClass('paytype-yes');
+                $("#paytype4").addClass('paytype-no');
+            }
+            if($("#paytype5").hasClass('paytype-yes')){
+                $("#paytype5").removeClass('paytype-yes');
+                $("#paytype5").addClass('paytype-no');
+            }
+            if($("#paytype6").hasClass('paytype-yes')){
+                $("#paytype6").removeClass('paytype-yes');
+                $("#paytype6").addClass('paytype-no');
+            }
+            temp_pay = 3;
+            alert(temp_pay);
+        })
+        $("#paytype4").click(function () {
+            if($("#paytype4").hasClass('paytype-no')){
+                $("#paytype4").removeClass('paytype-no');
+                $("#paytype4").addClass('paytype-yes');
+            }
+            if($("#paytype1").hasClass('paytype-yes')){
+                $("#paytype1").removeClass('paytype-yes');
+                $("#paytype1").addClass('paytype-no');
+            }
+            if($("#paytype2").hasClass('paytype-yes')){
+                $("#paytype2").removeClass('paytype-yes');
+                $("#paytype2").addClass('paytype-no');
+            }
+            if($("#paytype3").hasClass('paytype-yes')){
+                $("#paytype3").removeClass('paytype-yes');
+                $("#paytype3").addClass('paytype-no');
+            }
+            if($("#paytype5").hasClass('paytype-yes')){
+                $("#paytype5").removeClass('paytype-yes');
+                $("#paytype5").addClass('paytype-no');
+            }
+            if($("#paytype6").hasClass('paytype-yes')){
+                $("#paytype6").removeClass('paytype-yes');
+                $("#paytype6").addClass('paytype-no');
+            }
+            temp_pay = 4;
+            alert(temp_pay);
+        })
+        $("#paytype5").click(function () {
+            if($("#paytype5").hasClass('paytype-no')){
+                $("#paytype5").removeClass('paytype-no');
+                $("#paytype5").addClass('paytype-yes');
+            }
+            if($("#paytype1").hasClass('paytype-yes')){
+                $("#paytype1").removeClass('paytype-yes');
+                $("#paytype1").addClass('paytype-no');
+            }
+            if($("#paytype2").hasClass('paytype-yes')){
+                $("#paytype2").removeClass('paytype-yes');
+                $("#paytype2").addClass('paytype-no');
+            }
+            if($("#paytype4").hasClass('paytype-yes')){
+                $("#paytype4").removeClass('paytype-yes');
+                $("#paytype4").addClass('paytype-no');
+            }
+            if($("#paytype3").hasClass('paytype-yes')){
+                $("#paytype3").removeClass('paytype-yes');
+                $("#paytype3").addClass('paytype-no');
+            }
+            if($("#paytype6").hasClass('paytype-yes')){
+                $("#paytype6").removeClass('paytype-yes');
+                $("#paytype6").addClass('paytype-no');
+            }
+            temp_pay = 5;
+            alert(temp_pay);
+        })
+        $("#paytype6").click(function () {
+            if($("#paytype6").hasClass('paytype-no')){
+                $("#paytype6").removeClass('paytype-no');
+                $("#paytype6").addClass('paytype-yes');
+            }
+            if($("#paytype1").hasClass('paytype-yes')){
+                $("#paytype1").removeClass('paytype-yes');
+                $("#paytype1").addClass('paytype-no');
+            }
+            if($("#paytype2").hasClass('paytype-yes')){
+                $("#paytype2").removeClass('paytype-yes');
+                $("#paytype2").addClass('paytype-no');
+            }
+            if($("#paytype4").hasClass('paytype-yes')){
+                $("#paytype4").removeClass('paytype-yes');
+                $("#paytype4").addClass('paytype-no');
+            }
+            if($("#paytype5").hasClass('paytype-yes')){
+                $("#paytype5").removeClass('paytype-yes');
+                $("#paytype5").addClass('paytype-no');
+            }
+            if($("#paytype3").hasClass('paytype-yes')){
+                $("#paytype3").removeClass('paytype-yes');
+                $("#paytype3").addClass('paytype-no');
+            }
+            temp_pay = 6;
+            alert(temp_pay);
+        })
+    })
 
+    //修改运输方式，默认1
+    $(function () {
+        $("#transporttype-1").click(function () {
+            if ($("#transporttype-1").hasClass('transporttype-no')){
+                $("#transporttype-1").removeClass('transporttype-no');
+                $("#transporttype-1").addClass('transporttype-yes');
+            }if ($("#transporttype-2").hasClass('transporttype-yes')){
+                $("#transporttype-2").removeClass('transporttype-yes');
+                $("#transporttype-2").addClass('transporttype-no');
+            }if ($("#transporttype-3").hasClass('transporttype-yes')){
+                $("#transporttype-3").removeClass('transporttype-yes');
+                $("#transporttype-3").addClass('transporttype-no');
+            }if ($("#transporttype-4").hasClass('transporttype-yes')){
+                $("#transporttype-4").removeClass('transporttype-yes');
+                $("#transporttype-4").addClass('transporttype-no');
+            }if ($("#transporttype-5").hasClass('transporttype-yes')){
+                $("#transporttype-5").removeClass('transporttype-yes');
+                $("#transporttype-5").addClass('transporttype-no');
+            }
+            temp_transport = 1;
+            alert(temp_transport);
+        })
+        $("#transporttype-2").click(function () {
+            if ($("#transporttype-2").hasClass('transporttype-no')){
+                $("#transporttype-2").removeClass('transporttype-no');
+                $("#transporttype-2").addClass('transporttype-yes');
+            }if ($("#transporttype-1").hasClass('transporttype-yes')){
+                $("#transporttype-1").removeClass('transporttype-yes');
+                $("#transporttype-1").addClass('transporttype-no');
+            }if ($("#transporttype-3").hasClass('transporttype-yes')){
+                $("#transporttype-3").removeClass('transporttype-yes');
+                $("#transporttype-3").addClass('transporttype-no');
+            }if ($("#transporttype-4").hasClass('transporttype-yes')){
+                $("#transporttype-4").removeClass('transporttype-yes');
+                $("#transporttype-4").addClass('transporttype-no');
+            }if ($("#transporttype-5").hasClass('transporttype-yes')){
+                $("#transporttype-5").removeClass('transporttype-yes');
+                $("#transporttype-5").addClass('transporttype-no');
+            }
+            temp_transport = 2;
+            alert(temp_transport);
+        })
+        $("#transporttype-3").click(function () {
+            if ($("#transporttype-3").hasClass('transporttype-no')){
+                $("#transporttype-3").removeClass('transporttype-no');
+                $("#transporttype-3").addClass('transporttype-yes');
+            }if ($("#transporttype-1").hasClass('transporttype-yes')){
+                $("#transporttype-1").removeClass('transporttype-yes');
+                $("#transporttype-1").addClass('transporttype-no');
+            }if ($("#transporttype-2").hasClass('transporttype-yes')){
+                $("#transporttype-2").removeClass('transporttype-yes');
+                $("#transporttype-2").addClass('transporttype-no');
+            }if ($("#transporttype-4").hasClass('transporttype-yes')){
+                $("#transporttype-4").removeClass('transporttype-yes');
+                $("#transporttype-4").addClass('transporttype-no');
+            }if ($("#transporttype-5").hasClass('transporttype-yes')){
+                $("#transporttype-5").removeClass('transporttype-yes');
+                $("#transporttype-5").addClass('transporttype-no');
+            }
+            temp_transport = 3;
+            alert(temp_transport);
+        })
+        $("#transporttype-4").click(function () {
+            if ($("#transporttype-4").hasClass('transporttype-no')){
+                $("#transporttype-4").removeClass('transporttype-no');
+                $("#transporttype-4").addClass('transporttype-yes');
+            }if ($("#transporttype-1").hasClass('transporttype-yes')){
+                $("#transporttype-1").removeClass('transporttype-yes');
+                $("#transporttype-1").addClass('transporttype-no');
+            }if ($("#transporttype-3").hasClass('transporttype-yes')){
+                $("#transporttype-3").removeClass('transporttype-yes');
+                $("#transporttype-3").addClass('transporttype-no');
+            }if ($("#transporttype-2").hasClass('transporttype-yes')){
+                $("#transporttype-2").removeClass('transporttype-yes');
+                $("#transporttype-2").addClass('transporttype-no');
+            }if ($("#transporttype-5").hasClass('transporttype-yes')){
+                $("#transporttype-5").removeClass('transporttype-yes');
+                $("#transporttype-5").addClass('transporttype-no');
+            }
+            temp_transport = 4;
+            alert(temp_transport);
+        })
+        $("#transporttype-5").click(function () {
+            if ($("#transporttype-5").hasClass('transporttype-no')){
+                $("#transporttype-5").removeClass('transporttype-no');
+                $("#transporttype-5").addClass('transporttype-yes');
+            }if ($("#transporttype-1").hasClass('transporttype-yes')){
+                $("#transporttype-1").removeClass('transporttype-yes');
+                $("#transporttype-1").addClass('transporttype-no');
+            }if ($("#transporttype-3").hasClass('transporttype-yes')){
+                $("#transporttype-3").removeClass('transporttype-yes');
+                $("#transporttype-3").addClass('transporttype-no');
+            }if ($("#transporttype-4").hasClass('transporttype-yes')){
+                $("#transporttype-4").removeClass('transporttype-yes');
+                $("#transporttype-4").addClass('transporttype-no');
+            }if ($("#transporttype-2").hasClass('transporttype-yes')){
+                $("#transporttype-2").removeClass('transporttype-yes');
+                $("#transporttype-2").addClass('transporttype-no');
+            }
+            temp_transport = 5;
+            alert(temp_transport);
+        })
+    })
+
+    //取网页信息
     $(function () {
         alert("取用户信息...");
         $.ajax({
@@ -484,7 +759,15 @@
             data:{userid:userid},
             success:function (data) {
 
+                temp_num = data.length;
                 temp_cart = data;
+                temp_num = 5;
+                //修改页面产品列表块高度
+                if(temp_num > 2){
+                    var m = temp_num * 130 + 20;
+                    $("#list-left").css("height","m");
+                    $("#list-right").css("height","m");
+                }
 
                 var data3 = new Vue({
                     el:'#product-info',
@@ -516,8 +799,8 @@
         })
     })
 
+    //提交订单
     $("#submitorder").click(function () {
-
         //定义两个json类
         var order = function (user_id, address_id,pay_id,status_id,price,transport_id) {
             this.user_id=user_id;
@@ -536,7 +819,7 @@
         }
 
         //生成订单，获取订单号
-        var orders = new order(1,1,1,1,8000,1);
+        var orders = new order(userid,1,temp_pay,1,temp_totalprice,temp_transport);
         $.ajax({
             url:"http://127.0.0.1:8080/api/order/createOrder",
             type:"post",
@@ -589,6 +872,7 @@
             }
         })
     })
+
 </script>
 
 </body>
