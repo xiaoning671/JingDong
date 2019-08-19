@@ -45,4 +45,21 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
+    @Override
+    public boolean insertUser(User_Info user) {
+        int a=user_infoMapper.insert(user);
+        if(a>0)
+        {
+            return true;
+        }
+       else{
+           return false;
+        }
+    }
+
+    @Override
+    public int selectUserid(String email) {
+        return 0;
+    }
+
 }
