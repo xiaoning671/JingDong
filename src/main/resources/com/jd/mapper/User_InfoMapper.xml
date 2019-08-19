@@ -35,19 +35,15 @@
     from User_Info
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectUser" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id from User_Info where email = #{email,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from User_Info
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.jd.enity.User_Info">
-    insert into User_Info (id, name, email, 
-      phone, password, idcard, 
-      birthday, sex, vip, create_date, 
-      status, defaultaddress)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, 
-      #{birthday,jdbcType=DATE}, #{sex,jdbcType=VARCHAR}, #{vip,jdbcType=INTEGER}, #{create_date,jdbcType=TIMESTAMP}, 
-      #{status,jdbcType=INTEGER}, #{defaultaddress,jdbcType=VARCHAR})
+    insert into User_Info (name,email,phone,password,idcard,sex,vip,status,defaultaddress) values (#{name,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{idcard,jdbcType=VARCHAR},#{sex,jdbcType=VARCHAR},#{vip,jdbcType=INTEGER},#{status,jdbcType=INTEGER},#{defaultaddress,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.jd.enity.User_Info">
     insert into User_Info

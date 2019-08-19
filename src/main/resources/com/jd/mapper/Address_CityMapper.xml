@@ -15,6 +15,12 @@
     from Address_City
     where a_cid = #{a_cid,jdbcType=INTEGER}
   </select>
+  <select id="getCity" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select * from Address_City where a_pid = #{a_pid,jdbcType=INTEGER}
+  </select>
+  <select id="getAllCity" resultMap="BaseResultMap">
+    select * from Address_City
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from Address_City
     where a_cid = #{a_cid,jdbcType=INTEGER}

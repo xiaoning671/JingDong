@@ -15,6 +15,10 @@
     from Address_Area
     where a_areaid = #{a_areaid,jdbcType=INTEGER}
   </select>
+  <select id="getArea" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select * from Address_Area
+    where a_c_id = #{a_c_id,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from Address_Area
     where a_areaid = #{a_areaid,jdbcType=INTEGER}

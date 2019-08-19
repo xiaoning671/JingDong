@@ -19,6 +19,31 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
+    @Override
+    public boolean insertUser(User_Info user)
+{
+    int a=user_infoMapper.insert(user);
+
+    if(a>0)
+    {
+        System.out.println(a);
+        return true;
+    }
+    else
+    {
+        System.out.println("错误");
+        return false;
+    }
+}
+
+    @Override
+    public int selectUserid(String email) {
+        int b=user_infoMapper.selectUser(email);
+        System.out.println(b);
+        return b;
+    }
+
+
 //    @Override
 //    public User_Info test(int i) {
 //        System.out.println(user_infoMapper.selectByPrimaryKey(i));

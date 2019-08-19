@@ -17,4 +17,10 @@ public class Address_InfoServiceImpl implements Address_InfoService {
     public List<Address_Info> getAllAddressByUserId(int id) {
         return address_infoMapper.selectByUserId(id);
     }
+
+    @Override
+    public int insertAddress_info(Address_Info address_info) {
+
+        return address_infoMapper.insert(address_info);
+    }
 }
