@@ -3,6 +3,7 @@ package com.jd.controller;
 import com.jd.enity.User_ShopCart;
 import com.jd.service.ShopCartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,6 +28,11 @@ public class ShopCartController {
             shopCartService.cartDel(id);
     }
 
+    //更改购物车数据库数量和状态
+    @RequestMapping("/api/order/generate")
+    public Integer getProAdd(@RequestBody List<User_ShopCart> id){
+        return shopCartService.getProAdd(id);
+    }
 
 //    @RequestMapping("/api/order/generate")
 //    public void toGenerate(List<Integer> list,Integer user_id){

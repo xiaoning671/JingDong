@@ -49,6 +49,13 @@
   <delete id="cartDel" parameterType="java.lang.Integer">
     delete from User_ShopCart where id = #{id}
   </delete>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jd.enity.User_ShopCart" >
+    update User_ShopCart set amount = #{amount} ,status = 1 where id = #{id}
+  </update>
+
+
+
+
 
   <sql id="Base_Column_List">
     id, user_id, produce_id, pversion_id, amount
@@ -139,32 +146,32 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jd.enity.User_ShopCart">
-    update User_ShopCart
-    <set>
-      <if test="user_id != null">
-        user_id = #{user_id,jdbcType=INTEGER},
-      </if>
-      <if test="produce_id != null">
-        produce_id = #{produce_id,jdbcType=INTEGER},
-      </if>
-      <if test="pversion_id != null">
-        pversion_id = #{pversion_id,jdbcType=INTEGER},
-      </if>
-      <if test="amount != null">
-        amount = #{amount,jdbcType=INTEGER},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.jd.enity.User_ShopCart">
-    update User_ShopCart
-    set user_id = #{user_id,jdbcType=INTEGER},
-      produce_id = #{produce_id,jdbcType=INTEGER},
-      pversion_id = #{pversion_id,jdbcType=INTEGER},
-      amount = #{amount,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+<!--  <update id="updateByPrimaryKeySelective" parameterType="com.jd.enity.User_ShopCart">-->
+<!--    update User_ShopCart-->
+<!--    <set>-->
+<!--      <if test="user_id != null">-->
+<!--        user_id = #{user_id,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--      <if test="produce_id != null">-->
+<!--        produce_id = #{produce_id,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--      <if test="pversion_id != null">-->
+<!--        pversion_id = #{pversion_id,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--      <if test="amount != null">-->
+<!--        amount = #{amount,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--    </set>-->
+<!--    where id = #{id,jdbcType=INTEGER}-->
+<!--  </update>-->
+<!--  <update id="updateByPrimaryKey" parameterType="com.jd.enity.User_ShopCart">-->
+<!--    update User_ShopCart-->
+<!--    set user_id = #{user_id,jdbcType=INTEGER},-->
+<!--      produce_id = #{produce_id,jdbcType=INTEGER},-->
+<!--      pversion_id = #{pversion_id,jdbcType=INTEGER},-->
+<!--      amount = #{amount,jdbcType=INTEGER}-->
+<!--    where id = #{id,jdbcType=INTEGER}-->
+<!--  </update>-->
 <!--    <select id="getVersionIdById" parameterType="java.lang.Integer" resultMap="java.lang.Integer">-->
 <!--        select pversion_id from User_ShopCart where id = #{id,jdbcType=INTEGER}-->
 <!--    </select>-->
