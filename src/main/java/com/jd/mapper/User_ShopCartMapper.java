@@ -17,6 +17,8 @@ public interface User_ShopCartMapper {
 
     int insertSelective(User_ShopCart record);
 
+    int insertShopCart(User_ShopCart record);
+
     User_ShopCart selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(User_ShopCart record);

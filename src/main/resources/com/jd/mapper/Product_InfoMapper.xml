@@ -14,13 +14,17 @@
     <result column="small" jdbcType="INTEGER" property="small" />
     <association property="sid_big" javaType="com.jd.enity.Product_BigClass">
       <id column="id" jdbcType="INTEGER" property="id" />
-      <result column="name" jdbcType="VARCHAR" property="name" />
+      <result column="bname" jdbcType="VARCHAR" property="name" />
     </association>
     <association property="sid_small" javaType="com.jd.enity.Product_SmallClass">
       <id column="id" jdbcType="INTEGER" property="id" />
-      <result column="name" jdbcType="VARCHAR" property="name" />
+      <result column="smname" jdbcType="VARCHAR" property="name" />
       <result column="bigclass_id" jdbcType="INTEGER" property="bigclass_id" />
     </association>
+    <association property="product_status" resultMap="Product_StatusResultMap"></association>
+  </resultMap>
+  <resultMap id="Product_StatusResultMap" type="com.jd.enity.Product_Status">
+    <result column="stname" jdbcType="VARCHAR" property="name" />
   </resultMap>
 <!--  <resultMap id="BigResultMap" type="com.jd.enity.Product_BigClass">-->
 <!--  </resultMap>-->
@@ -40,10 +44,21 @@ select * from Product_Info p LEFT JOIN Product_BigClass b on  p.sid_big=b.id  LE
 
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="Product_InfoResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from Product_Info
-    where id = #{id,jdbcType=INTEGER}
+    select pin.*,pbi.name as bname,pst.name as stname,psm.name as smname
+    from Product_Info pin,Product_Status pst,Product_BigClass pbi,Product_SmallClass psm
+    where pin.status_id = pst.id and pin.sid_big = pbi.id and pin.sid_small = psm.id and pin.id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="getAllProduct" parameterType="java.lang.Integer" resultMap="Product_InfoResultMap">
+    select pin.id as pid,pin.name,pin.title,pin.create_time,pin.min_price,pin.discount,pin.warranty_data, pst.name as psname,
+    pim.url,pim.descrip,pve.name as pvname,pve.price,pve.stock,pve.purprice,pve.weight,pbi.name as pbname,psm.name as pmname
+    from Product_Info pin,Product_Status pst,Product_Images pim,Product_Version pve,Product_BigClass pbi,Product_SmallClass psm
+    where pin.status_id = pst.id and pve.product_id = pin.id and pim.product_id = pin.id and pin.sid_big = pbi.id and pin.sid_small = psm.id
+    and pin.id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="getComment" parameterType="java.lang.Integer" resultMap="Product_InfoResultMap">
+    SELECT cin.content,uin.name as uname
+    FROM Comment_Info cin,User_Info uin,Product_Info pin
+    where cin.user_id = uin.id and cin.product_id = pin.id and pin.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from Product_Info

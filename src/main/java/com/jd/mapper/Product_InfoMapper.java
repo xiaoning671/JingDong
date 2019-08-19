@@ -16,6 +16,8 @@ public interface Product_InfoMapper {
 
     Product_Info selectByPrimaryKey(Integer id);
 
+    List<Product_Info> getComment(Integer id);
+
     int updateByPrimaryKeySelective(Product_Info record);
 
     int updateByPrimaryKey(Product_Info record);

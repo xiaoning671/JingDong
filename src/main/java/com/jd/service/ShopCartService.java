@@ -9,4 +9,6 @@ public interface ShopCartService {
     public void cartDel(Integer id);
     public Integer getProAdd(List<User_ShopCart> id);
 //    public void toGenerate(List<Integer> list, Integer user_id);
+
+    public int insertShopCart(User_ShopCart record);
 }
