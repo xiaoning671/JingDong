@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Set;
 
 public class Product_Info {
     private Integer id;
@@ -21,6 +22,51 @@ public class Product_Info {
     private String warranty_data;
 
     private Integer status_id;
+
+    private Product_Status product_status;
+    private Set<Comment_Info> comment_infoSet;
+
+    private Set<Product_Version> product_versionSet;
+
+    public Product_Status getProduct_status() {
+        return product_status;
+    }
+
+    public void setProduct_status(Product_Status product_status) {
+        this.product_status = product_status;
+    }
+
+    public Set<Comment_Info> getComment_infoSet() {
+        return comment_infoSet;
+    }
+
+    public void setComment_infoSet(Set<Comment_Info> comment_infoSet) {
+        this.comment_infoSet = comment_infoSet;
+    }
+
+    public Set<Product_Version> getProduct_versionSet() {
+        return product_versionSet;
+    }
+
+    public void setProduct_versionSet(Set<Product_Version> product_versionSet) {
+        this.product_versionSet = product_versionSet;
+    }
+
+    public Product_BigClass getSid_big() {
+        return sid_big;
+    }
+
+    public void setSid_big(Product_BigClass sid_big) {
+        this.sid_big = sid_big;
+    }
+
+    public Product_SmallClass getSid_small() {
+        return sid_small;
+    }
+
+    public void setSid_small(Product_SmallClass sid_small) {
+        this.sid_small = sid_small;
+    }
 
     public int getBig() {
         return big;
@@ -64,6 +110,9 @@ public class Product_Info {
                 ", discount='" + discount + '\'' +
                 ", warranty_data='" + warranty_data + '\'' +
                 ", status_id=" + status_id +
+                ", product_status=" + product_status +
+                ", comment_infoSet=" + comment_infoSet +
+                ", product_versionSet=" + product_versionSet +
                 ", big=" + big +
                 ", small=" + small +
                 ", sid_big=" + sid_big +

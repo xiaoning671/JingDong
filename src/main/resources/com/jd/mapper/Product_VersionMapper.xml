@@ -30,14 +30,24 @@
     <result column="url" jdbcType="VARCHAR" property="url" />
     <result column="descrip" jdbcType="VARCHAR" property="descrip" />
   </resultMap>
-
+  <resultMap id="ProVersionResultMap" type="com.jd.enity.Product_Version">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="product_id" jdbcType="INTEGER" property="product_id" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="stock" jdbcType="INTEGER" property="stock" />
+    <result column="purprice" jdbcType="DECIMAL" property="purprice" />
+    <result column="weight" jdbcType="INTEGER" property="weight" />
+  </resultMap>
   <sql id="Base_Column_List">
     id, name, product_id, price, stock, purprice, weight
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="Product_VersionResultMap">
     select pv.id, pv.name, pv.price, pv.weight, p.id, p.name, p.title, pi.url from Product_Version pv, Product_Info p, Product_Images pi where pv.id = #{id,jdbcType=INTEGER} and pv.product_id = p.id and pi.product_id = p.id
   </select>
-
+  <select id="getProductVersion" parameterType="java.lang.Integer" resultMap="ProVersionResultMap">
+  select * from Product_Version pv where pv.product_id = #{id,jdbcType=INTEGER}
+</select>
 
 
 

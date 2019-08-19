@@ -57,4 +57,9 @@ public class Product_VersionServiceImpl implements Product_VersionService {
         }
         return Plist;
     }
+
+    @Override
+    public List<Product_Version> getProductVersion(Integer id) {
+        return product_versionMapper.getProductVersion(id);
+    }
 }

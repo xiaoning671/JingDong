@@ -18,6 +18,8 @@ public interface Product_InfoMapper {
 
     List<Product_Info> selectPInfoByKey(String key);
 
+    List<Product_Info> getComment(Integer id);
+
     int updateByPrimaryKeySelective(Product_Info record);
 
     int updateByPrimaryKey(Product_Info record);

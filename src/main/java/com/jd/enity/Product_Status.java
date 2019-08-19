@@ -5,6 +5,16 @@ public class Product_Status {
 
     private String name;
 
+    private Product_Info product_info;
+
+    public Product_Info getProduct_info() {
+        return product_info;
+    }
+
+    public void setProduct_info(Product_Info product_info) {
+        this.product_info = product_info;
+    }
+
     public Integer getId() {
         return id;
     }
