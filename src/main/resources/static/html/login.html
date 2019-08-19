@@ -25,35 +25,38 @@
             }),
             //点击 "登录"
             $("#login_btn").click(function () {
-                // alert("lodin");
                 $.ajax({
                     url:"http://127.0.0.1:8080/login",
-                    type:"post",
+                    // url:"http://127.0.0.1:8080/test",
+                    type:"get",
                     dataType:"json",
                     data:{
                         name:$("#name").val(),
                         password:$("#pass").val(),
+                        // i:1,
                     },
                     success:function (data) {
+                        // document.cookie = "cookie_userid = data.id";
+                        // document.cookie = "cookie_username = data.name";
                         if(data.id!=-1){
+                            document.cookie = "cookie_userid = " + data.id;
+                            document.cookie = "cookie_username = " + data.name;
                             alert("登录成功！欢迎");
-                            document.cookie = "cookie_userid = data.id";
-                            document.cookie = "cookie_username = data.name";
-                            window.location.href="http://localhost:8080/html/index.html"  //*********要跳到首页
+                            document.cookie=data.id;
+                            window.location.href="http://127.0.0.1:8080/html/login.html"  //*********要跳到首页
                            }else{
                             alert("登录失败");
+
                             $("#mistake").css("display","inline"); //显示错误信息
                             }
 
-                    },error:function (data) {
-                        alert("出现错误")
                     }
                 });
             }),
             //点击 "注册"
             $("#registered").click(function () {
                     $.ajax({
-                        url:"http://localhost:8080/registered",
+                        url:"http://127.0.0.1:8080/registered",
                         success:function (data) {
                             alert(data);
                             window.location.href="https://www.baidu.com";  //************跳转到注册界面
