@@ -11,6 +11,8 @@ public class Product_Images {
 
     private String descrip;
 
+    private Product_Info product_info;
+
     @Override
     public String toString() {
         return "Product_Images{" +
@@ -19,6 +21,7 @@ public class Product_Images {
                 ", version_id=" + version_id +
                 ", url='" + url + '\'' +
                 ", descrip='" + descrip + '\'' +
+                ", product_info=" + product_info +
                 '}';
     }
 
@@ -60,5 +63,13 @@ public class Product_Images {
 
     public void setDescrip(String descrip) {
         this.descrip = descrip == null ? null : descrip.trim();
+    }
+
+    public Product_Info getProduct_info() {
+        return product_info;
+    }
+
+    public void setProduct_info(Product_Info product_info) {
+        this.product_info = product_info;
     }
 }

@@ -9,6 +9,17 @@
     <result column="score" jdbcType="INTEGER" property="score" />
     <result column="content" jdbcType="VARCHAR" property="content" />
   </resultMap>
+  <resultMap id="Comment_InfoResultMap" type="com.jd.enity.Comment_Info">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="product_id" jdbcType="INTEGER" property="product_id" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="create_date" />
+    <result column="score" jdbcType="INTEGER" property="score" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <association property="user_info" javaType="com.jd.enity.User_Info">
+      <id column="uid" jdbcType="INTEGER" property="id" />
+      <result column="name" jdbcType="VARCHAR" property="name" />
+    </association>
+  </resultMap>
   <sql id="Base_Column_List">
     id, user_id, product_id, create_date, score, content
   </sql>
@@ -17,6 +28,9 @@
     <include refid="Base_Column_List" />
     from Comment_Info
     where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="getCommentByProId" parameterType="java.lang.Integer" resultMap="Comment_InfoResultMap">
+    select cin.*,uin.name,uin.id as uid from Comment_Info cin,User_Info uin where cin.user_id = uin.id and cin.product_id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from Comment_Info

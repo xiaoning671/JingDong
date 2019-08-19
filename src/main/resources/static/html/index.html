@@ -9,6 +9,12 @@
 	<link rel = "Shortcut Icon" href='../../images/index/favicon.ico'>
 </head>
 <body>
+
+<script>
+	$("#search-btn").click(function () {
+		window.location.href = "127.0.0.1:8080/html/search.html";
+	})
+</script>
 	<!--导航栏-->
 	<nav> 
 		<div class="nav_main">
@@ -220,7 +226,7 @@
 	<!--搜索框-->
 	<form class="search">
 		<input class="search_inp" type="text" name="search" placeholder="平板二合一">
-		<button class="search_btn">
+		<button class="search_btn" id="search-btn">
 			<img src="../images/index/search.png">
 		</button>
 		<div class="tips">

@@ -10,4 +10,6 @@ public interface Product_VersionService {
     public List<User_ShopCart> getPVersionById(int userid);
     public List<String> getImgUrlByID(List<Integer> list);
 
+    public List<Product_Version> getProductVersion(Integer id);
+
 }

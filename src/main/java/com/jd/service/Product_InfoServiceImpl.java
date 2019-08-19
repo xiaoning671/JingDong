@@ -25,4 +25,22 @@ public class Product_InfoServiceImpl implements Product_InfoService {
         if(product_infoMapper.deleteByPrimaryKey(del)==1)return true;
         return false;
     }
+
+    @Override
+    public Product_Info selectByPrimaryKey(Integer id) {
+        return product_infoMapper.selectByPrimaryKey(id);
+    }
+    @Override
+    public List<Product_Info> getComment(Integer id) {
+        return product_infoMapper.getComment(id);
+    }
+
+
+
+    @Override
+    public List<Product_Info> getPInfoByKey(String key){
+        List<Product_Info> plist=  product_infoMapper.selectPInfoByKey(key);
+        System.out.println(plist);
+        return  plist;
+    }
 }
