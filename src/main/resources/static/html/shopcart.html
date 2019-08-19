@@ -224,7 +224,7 @@
             </div>
             <!--   一个购物车模板         -->
             <div id="cart_content">
-                <div class="cart_content_1"><input name="one" type="checkbox"></div>
+                <div class="cart_content_1"><input name="one" type="checkbox"><div class="hideBox" style="display: none"></div></div>
                 <div class="cart_content_2">
                     <div class="cart_content_img">
                         <img src="../images/shopcart/cart1.jpg">
@@ -474,6 +474,10 @@
 </script>
 <script>
     $(function () {
+        // //勾选checkbox
+        // $("input[name='one']").click(function () {
+        //     alert('12');
+        // })
         //查询购物功能
         var $model = $("#cart_content");
         $.ajax({
@@ -488,6 +492,7 @@
                 // var temp = eval(data[i]);
                 for (var i = 0; i < data.length; i++) {
                     var $temp = $model.clone(true);
+                    $temp.children().eq(0).find('.hideBox').html(data[i].id);
                     $temp.children().eq(1).find('.first_a').html(data[i]['product_info'].title);
                     $temp.children().eq(2).children().html(data[i]['product_info'].name);
                     $temp.children().eq(3).find('.first_span').html(data[i]['product_version'].purprice);
@@ -508,27 +513,32 @@
                 }
             }
         })
+        $("input[name='one']").click(function () {
+            alert("123");
+        })
         $model = $("#cart_content").detach();
     })
 </script>
 <script>
     $(function () {
-        // if($("input[name='one']").prop("checked")){
+        // $("input[name='one']").prop("checked")
         //点击结算按钮更新购物车表中的数量和状态
         $(".pay_text").click(function () {
-            var saveDataAry=[];
-            var data1={id:1,amount:2};
-            var data2={id:2,amount:1};
-            saveDataAry.push(data1);
-            saveDataAry.push(data2);
+            // var saveDataAry=[];
+            // var data1={id:1,amount:2};
+            // var data2={id:2,amount:1};
+            // saveDataAry.push(data1);
+            // saveDataAry.push(data2);
             $.ajax({
                 url: "http://127.0.0.1:8080/api/order/generate",
                 type: "post",
-                data:JSON.stringify(saveDataAry),
+                data:{
+
+                },
+                // data:JSON.stringify(saveDataAry),
                 dataType: "json",
-                contentType:'application/json;charset=UTF-8',
-                success: function (data) {
-                    alert(data);
+                // contentType:'application/json;charset=UTF-8',
+                success: function () {
                 }
             })
         })
