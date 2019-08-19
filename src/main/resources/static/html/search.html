@@ -191,14 +191,14 @@
 </div>
 <script>
     var userid;
-    var username="大雄";
+    var username;
 
-    // if (getCookie("cookie_userid")!=null){
-    //     userid=getCookie("cookie_userid");
-    // }
-    // if (getCookie("cookie_username")!=null){
-    //     username=getCookie("cookie_username");
-    // }
+    if (getCookie("cookie_userid")!=null){
+        userid=getCookie("cookie_userid");
+    }
+    if (getCookie("cookie_username")!=null){
+        username=getCookie("cookie_username");
+    }
 
     var data1 = new Vue({
         el:'#username',
@@ -280,6 +280,7 @@
         $("#productdemo").click(function () {
             var selectedid=$(this).children().eq(0).html();
             document.cookie = ("cookie_produce_id = " + selectedid);
+            window.location.href = "http://127.0.0.1:8080/html/details.html";
             // alert(selectedid);
         })
         $modle = $("#productdemo").detach();
