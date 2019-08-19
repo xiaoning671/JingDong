@@ -7,4 +7,5 @@ import java.util.List;
 public interface Product_InfoService {
     List<Product_Info> getAll();
     boolean del_ProductInfo(int del);
+    public List<Product_Info> getPInfoByKey(String key);
 }

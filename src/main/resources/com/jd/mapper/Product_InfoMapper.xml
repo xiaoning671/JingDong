@@ -45,6 +45,13 @@ select * from Product_Info p LEFT JOIN Product_BigClass b on  p.sid_big=b.id  LE
     from Product_Info
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectPInfoByKey" parameterType="java.lang.String" resultMap="Product_InfoResultMap">
+    <!--   <bind name="title_key" value="'%'+_key+'%'" />-->
+    select
+    *
+    from Product_Info
+    where title like concat('%',#{key},'%')
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from Product_Info
     where id = #{id,jdbcType=INTEGER}
