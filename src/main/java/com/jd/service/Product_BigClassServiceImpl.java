@@ -37,4 +37,13 @@ public class Product_BigClassServiceImpl implements Product_BigClassService {
             return false;
         }
     }
+
+    @Override
+    public int alter_firstBigClass(Product_BigClass a_kind) {
+        if(product_bigClassMapper.updateByPrimaryKeySelective(a_kind)==1) {
+            return 1;
+        }else{
+            return 2;
+        }
+    }
 }

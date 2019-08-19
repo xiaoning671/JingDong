@@ -5,13 +5,15 @@ $(function () {
         window.location.reload();
 
     })
-    //商品种类管理--一级商品种类管理                                    瑕疵
+    //商品种类管理--一级商品种类管理
     $("#produce_kind_first_manage").click(function () {
+        // var $first_manage=$('<span id="home"<a href="#" >一级商品种类管理</a> &nbsp/ &nbsp</span>');
+        // $("#home").after($first_manage);
         display_none_all_table();
         $("#disp_pro_manage1").css("display","inline");
         $("#disp_pro_manage1 tbody tr").remove();
          $.ajax({
-             url: "http://localhost:8080/backstage_getBigClass",
+             url: "http://127.0.0.1:8080/backstage_getBigClass",
              type: "post",
              dataType: "json",
              success: function (data) {
@@ -21,7 +23,7 @@ $(function () {
                  }
                  $(".del_bigclass").click(function () {  //新增加的项目中的 删除 已经好使了
                     $.ajax({
-                        url:"http://localhost:8080/backstage_del_firstBigClass",
+                        url:"http://127.0.0.1:8080/backstage_del_firstBigClass",
                         type:"post",
                         dataType:"json",
                         data:{
@@ -40,6 +42,28 @@ $(function () {
                  $(".revise_bigclass").click(function () { //新增加的项目中的 修改 不好使***
                      alert("yes");
                      var $rev=$("#disp_pro_add1 tbody tr").clone();
+                     $rev.children(":eq(3)").children().click(function () {
+                         alert("clear");
+                         $(this).parent().prev().prev().prev().children().val("");
+                         $(this).parent().prev().prev().children().val("");
+                     })
+                     $rev.children(":eq(2)").children().click(function () {
+                         $.ajax({
+                             url:"http://127.0.0.1:8080/backstage_alter_firstBigClass",
+                             data:{
+                                 id:$(this).parent().prev().prev().children().val(),
+                                 name:$(this).parent().prev().children().val(),
+                             },
+                             success:function (data) {
+                                 alert(data);
+                                 if(data==1){
+                                     alert("数据库中有该数据，已修改完成！")
+                                 }else{
+                                     alert("数据库中无该数据,无法修改，请到添加页面添加！")
+                                 }
+                             }
+                         })
+                     })
                      $("#disp_pro_manage1 tbody").append($rev);
                  })
              }
@@ -51,6 +75,8 @@ $(function () {
 
     //商品种类管理--一级商品种类添加                            成功
     $("#produce_kind_first_add").click(function () {
+        // var $first_manage=$('<span id="home"<a href="#" >一级商品种类管理</a> &nbsp/ &nbsp</span>');
+        // $("#home").after($first_manage);
         display_none_all_table();
         $("#disp_pro_add1").css("display","inline");
         });
@@ -58,7 +84,7 @@ $(function () {
                 $("input[name=in1_submit]").click(function () {
                     alert("正在提交");
                     $.ajax({
-                        url:"http://localhost:8080/backstage_add_firstBigClass",
+                        url:"http://127.0.0.1:8080/backstage_add_firstBigClass",
                         type: "post",
                         dataType:"json",
                         data:{
@@ -86,7 +112,7 @@ $(function () {
         display_none_all_table();
         $("#disp_pro_manage2").css("display","inline");
         $.ajax({
-            url:"http://localhost:8080/backstage_getSmallClass",
+            url:"http://127.0.0.1:8080/backstage_getSmallClass",
             type:"post",
             dataType:"json",
             success:function (data) {
@@ -102,7 +128,7 @@ $(function () {
                         del:function (index) {
                             dataType:'jason',
                             $.ajax({
-                                url:"http://localhost:8080/backstage_del_SmallClass",
+                                url:"http://127.0.0.1:8080/backstage_del_SmallClass",
                                 data:{
                                     del:this.smallClass[index].id
                                 },
@@ -132,7 +158,7 @@ $(function () {
         $("input[name=in2_submit]").click(function () {
             alert("正在提交");
             $.ajax({
-                url:"http://localhost:8080/backstage_add_ProductInfo",
+                url:"http://127.0.0.1:8080/backstage_add_ProductInfo",
                 type: "post",
                 dataType:"json",
                 data:{
@@ -164,7 +190,7 @@ $(function () {
     })         // 添加 提交数据 被按下
                 $("input[name=add_pro]").click(function () {
                   $.ajax({
-                      url: "http://localhost:8080/backstage_add_ProductInfo",
+                      url: "http://127.0.0.1:8080/backstage_add_ProductInfo",
                       type: "post",
                       dataType: "json",
                       data: {
@@ -202,7 +228,7 @@ $(function () {
     })      //提交数据  被按下
             $("input[name=in_del_submit]").click(function () {
                 $.ajax({
-                    url: "http://localhost:8080/backstage_del_ProductInfo",
+                    url: "http://127.0.0.1:8080/backstage_del_ProductInfo",
                     type: "post",
                     dataType: "json",
                     data: {
@@ -223,7 +249,7 @@ $(function () {
     //         sid_small: $(this).parent().parent().prev().children(":eq(7)").children().val(),
     // )
         $.ajax({
-            url: "http://localhost:8080/backstage_alter_ProductInfo",
+            url: "http://127.0.0.1:8080/backstage_alter_ProductInfo",
             type: "post",
             dataType: "json",
             data: {
@@ -259,11 +285,10 @@ $(function () {
         display_none_all_table();
         $("#disp_produce_select").css("display", "inline");
         $.ajax({
-            url: "http://localhost:8080/backstage_getAllProductInfo",
+            url: "http://127.0.0.1:8080/backstage_getAllProductInfo",
             type: "post",
             dataType: "json",
             success: function (data) {
-                alert(data);
                 console.log(data);
                 var product_info = new Vue({
                         el:"#disp_produce_select",
@@ -288,29 +313,27 @@ $(function () {
         })
         $("input[name=clear_order]").click(function () {
             alert("清空重输")
-            $(this).parent().parent().prev().children(":eq(0)").children().val("");
-            $(this).parent().parent().prev().children(":eq(1)").children().val("");
-            $(this).parent().parent().prev().children(":eq(2)").children().val("");
-            $(this).parent().parent().prev().children(":eq(3)").children().val("");
-            $(this).parent().parent().prev().children(":eq(4)").children().val("");
-            $(this).parent().parent().prev().children(":eq(5)").children().val("");
-            $(this).parent().parent().prev().children(":eq(6)").children().val("");
-            $(this).parent().parent().prev().children(":eq(7)").children().val("");
-            $(this).parent().parent().prev().children(":eq(8)").children().val("");
-            $(this).parent().parent().prev().children(":eq(9)").children().val("");
-            $(this).parent().parent().prev().children(":eq(10)").children().val("");
-
+            $(this).parent().parent().prev().children(":eq(0)").children().val(""),
+            $(this).parent().parent().prev().children(":eq(1)").children().val(""),
+            $(this).parent().parent().prev().children(":eq(2)").children().val(""),
+            $(this).parent().parent().prev().children(":eq(3)").children().val(""),
+            $(this).parent().parent().prev().children(":eq(4)").children().val(""),
+            $(this).parent().parent().prev().children(":eq(5)").children().val(""),
+            $(this).parent().parent().prev().children(":eq(6)").children().val(""),
+            $(this).parent().parent().prev().children(":eq(7)").children().val(""),
+            $(this).parent().parent().prev().children(":eq(8)").children().val(""),
+            $(this).parent().parent().prev().children(":eq(9)").children().val(""),
+            $(this).parent().parent().prev().children(":eq(10)").children().val("")
         })
     //订单查询
     $("#order_select").click(function () {
         display_none_all_table();
         $("#disp_order_select").css("display","inline");
         $.ajax({
-            url:"http://localhost:8080/backstage_getAllOrder",
+            url:"http://127.0.0.1:8080/backstage_getAllOrder",
             type:"post",
             dataType:"json",
             success:function (data) {
-                alert(data);
                 var Order_all =new Vue({
                     el:"#disp_order_select",
                     data:{
@@ -325,7 +348,7 @@ $(function () {
         display_none_all_table();
         $("#disp_user_all").css("display","inline")
         $.ajax({
-            url:"http://localhost:8080/backstage_getAllUser",
+            url:"http://127.0.0.1:8080/backstage_getAllUser",
             type:"post",
             dataType:"json",
             success:function (data) {
@@ -354,7 +377,7 @@ $(function () {
 /*日期类型未匹配，未解决*/$("input[name=user_add]").click(function () {
                 alert("添加");
                 $.ajax({
-                    url:"http://localhost:8080/backstage_add_User",
+                    url:"http://127.0.0.1:8080/backstage_add_User",
                     type:"post",
                     dataType:"json",
                     data:{
@@ -387,16 +410,16 @@ $(function () {
     $("#user_del").click(function () {
         display_none_all_table();
         $("#disp_user_del").css("display","inline");
-
     })
             $("input[name=user_del]").click(function () {
                 alert("确定删除？")
+               alert( $("input[name=del_user]").val())
                 $.ajax({
-                    url:"http://localhost:8080/backstage_del_User",
+                    url:"http://127.0.0.1:8080/backstage_del_User",
                     type:"post",
                     dataType:"json",
                     data:{
-                      id:$("#del_user").val()
+                        del:$("input[name=del_user]").val()
                     },
                     success:function (data) {
                         alert(data)
@@ -405,23 +428,5 @@ $(function () {
             })
  function display_none_all_table() {
     $("table").css("display","none");
-
  }
-
-function dateFormat(time) {
-    var date=new Date(time);
-    var year=date.getFullYear();
-    /* 在日期格式中，月份是从0开始的，因此要加0
-     * 使用三元表达式在小于10的前面加0，以达到格式统一  如 09:11:05
-     * */
-    var month= date.getMonth()+1<10 ? "0"+(date.getMonth()+1) : date.getMonth()+1;
-    var day=date.getDate()<10 ? "0"+date.getDate() : date.getDate();
-    var hours=date.getHours()<10 ? "0"+date.getHours() : date.getHours();
-    var minutes=date.getMinutes()<10 ? "0"+date.getMinutes() : date.getMinutes();
-    var seconds=date.getSeconds()<10 ? "0"+date.getSeconds() : date.getSeconds();
-    // 拼接
-    return year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds;
-}
-
-
 });
