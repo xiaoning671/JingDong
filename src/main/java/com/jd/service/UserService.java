@@ -11,4 +11,6 @@ public interface UserService {
     public boolean del_user(int del);
     public boolean add_user(User_Info add);
 
+    public boolean insertUser(User_Info user);
+    public int selectUserid(String email);
 }

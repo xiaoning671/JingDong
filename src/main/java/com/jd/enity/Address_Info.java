@@ -10,7 +10,9 @@ public class Address_Info {
     private Integer zipcode;
 
     private String phone;
-
+    private int province;
+    private int city;
+    private int area;
     private Address_Province address_province;
     private Address_City address_city;
     private Address_Area address_area;
@@ -30,6 +32,30 @@ public class Address_Info {
                 ", address_area=" + address_area +
                 ", address='" + address + '\'' +
                 '}';
+    }
+
+    public int getProvince() {
+        return province;
+    }
+
+    public void setProvince(int province) {
+        this.province = province;
+    }
+
+    public int getCity() {
+        return city;
+    }
+
+    public void setCity(int city) {
+        this.city = city;
+    }
+
+    public int getArea() {
+        return area;
+    }
+
+    public void setArea(int area) {
+        this.area = area;
     }
 
     public Address_Province getAddress_province() {

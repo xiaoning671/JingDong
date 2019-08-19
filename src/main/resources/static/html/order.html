@@ -466,6 +466,13 @@
     var temp_transport = 1;
     var temp_orderid;
     var temp_num = 1;
+    var username;
+
+    if(getCookie("cookie_userid") != null){
+        userid = getCookie("cookie_userid");
+    }if(getCookie("cookie_username") != null){
+        username = getCookie("cookie_username");
+    }
 
     //修改付款方式，默认1
     $(function () {

@@ -1,8 +1,15 @@
 package com.jd.mapper;
 
 import com.jd.enity.Address_City;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+@Repository
 public interface Address_CityMapper {
+    List<Address_City> getAllCity();
+
+    List<Address_City> getCity(Integer a_pid);
+
     int deleteByPrimaryKey(Integer a_cid);
 
     int insert(Address_City record);
