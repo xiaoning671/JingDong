@@ -75,7 +75,7 @@
             //查询购物功能
             var $model = $("#cart_content");
             $.ajax({
-                url: "http://localhost:8080/api/cart",
+                url: "http://127.0.0.1:8080/api/cart",
                 type: "post",
                 data: {user_id: 1},
                 dataType: "json",
@@ -93,7 +93,7 @@
                         //删除购物车功能 只能在克隆部分写才能绑定上单击事件
                         $(".del").click(function (){
                             $.ajax({
-                                url: "http://localhost:8080/api/cartDel",
+                                url: "http://127.0.0.1:8080/api/cartDel",
                                 type: "post",
                                 data: {id: 1},
                                 dataType: "json",
@@ -107,6 +107,29 @@
                 }
             })
             $model = $("#cart_content").detach();
+        })
+    </script>
+    <script>
+        $(function () {
+            // if($("input[name='one']").prop("checked")){
+            //点击结算按钮更新购物车表中的数量和状态
+            $(".pay_text").click(function () {
+                var saveDataAry=[];
+                var data1={id:1,amount:2};
+                var data2={id:2,amount:1};
+                saveDataAry.push(data1);
+                saveDataAry.push(data2);
+                $.ajax({
+                    url: "http://127.0.0.1:8080/api/order/generate",
+                    type: "post",
+                    data:JSON.stringify(saveDataAry),
+                    dataType: "json",
+                    contentType:'application/json;charset=UTF-8',
+                    success: function (data) {
+                        alert(data);
+                    }
+                })
+            })
         })
     </script>
 <!--    <script>-->
@@ -140,7 +163,7 @@
             <li>福建</li>
         </ul>
         <ul id="m_right">
-            <li id="m_right_first">小龙爷808<i class="iconfont"></i></li>
+            <li id="m_right_first"><span id="user_name">{{users_name}}</span><i class="iconfont"></i></li>
             <li class="spacer"></li>
             <li class="dt"><a>我的订单</a></li>
             <li class="spacer"></li>
@@ -251,7 +274,7 @@
                         <span class="price_three">促销：</span>
                         <span class="price_four">-¥0.00</span>
                     </div>
-                    <a class="pay" href="http://localhost:8080/html/order.html">
+                    <a class="pay" href="http://127.0.0.1:8080/html/order.html">
                         <input class="pay_text" type="button" value="去结算">
                     </a>
                 </div>
@@ -359,5 +382,158 @@
             href="" target="_blank">京东钱包</a>
     </div>
 </div>
+<script>
+    //缓存用户
+    var userid;
+    var username;
+    function getCookie(cname)
+    {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0; i<ca.length; i++)
+        {
+            var c = ca[i].trim();
+            if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+        }
+        return "";
+    }
+    if (getCookie("cookie_userid") !=null){
+        userid = getCookie("cookie_userid");
+    }if (getCookie("cookie_username") !=null){
+        username = getCookie("cookie_username");
+    }
+    var vms = new Vue({
+        el:'#user_name',
+        data:{users_name:{}},
+        created:function () {
+            this.users_name = username;
+        }
+    })
+</script>
+
+<script>
+    $(function () {
+        //jquery实现单选、全选、数量加一、数量减一
+        //数量加一
+        $("input[value='+']").click(function () {
+            $(this).prev().val(parseInt($(this).prev().val()) + 1);
+            $("input[name='num']").trigger("input");
+        });
+        // //数量减一
+        $("input[value='-']").click(function () {
+            var num = parseInt($(this).next().val());
+            if (num > 1) {
+                $(this).next().val(num - 1);
+                $("input[name='num']").trigger("input");
+            } else
+                $(this).parent().next().next().children().eq(0).click();
+        });
+        //删除产品
+        $(".del").click(function () {
+            if (window.confirm("是否删除该产品？")) {
+                $(this).parent().parent().remove();
+                calcTotal();
+            }
+        });
+        //全选
+        $("input[name='all']").click(function () {
+            if ($(this).is(":checked")) {
+                $("input[name='one']").prop("checked", true);
+            } else {
+                $("input[name='one']").prop("checked", false);
+            }
+            calcTotal();
+        });
+        //合计值
+        $("input[name='num']").bind('input', function () {
+            var num = $(this).val() == '' ? 0 : parseInt($(this).val());
+            // $(this).parent().next().find("span").text((parseFloat($(this).parent().prev().find("span").text()) * num).toFixed(2));
+            $(this).parent().next().find("span").text((parseFloat($(this).parent().prev().find("span").text()) * num).toFixed(2));
+            calcTotal();
+        });
+        //勾选合计
+        $("input[name='one']").click(function () {
+            calcTotal();
+        });
+    })
+
+    //计算总价格
+    function calcTotal() {
+        var sum = 0;
+        $("#content_bottom_car div:not([delay='false'])").each(function () {  //选取除了首尾的所有div兄弟
+            if ($(this).find("input[name='one']").is(':checked')) {
+                // sum += (+$(this).children().eq(5).find("span").text());
+                sum +=(+$(this).find("span.single_price").text());  //find()的写法 二是js默认+是拼接符
+            }
+        });
+        // var total = sum.toFixed(2);
+        // $(".price_two").text(total);
+        console.log(sum);
+        $(".price_two").text(sum);
+    }
+</script>
+<script>
+    $(function () {
+        //查询购物功能
+        var $model = $("#cart_content");
+        $.ajax({
+            url: "http://127.0.0.1:8080/api/cart",
+            type: "post",
+            data: {user_id: 1},
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                //     alert(data);
+                // var array=eval("("+data+")")
+                // var temp = eval(data[i]);
+                for (var i = 0; i < data.length; i++) {
+                    var $temp = $model.clone(true);
+                    $temp.children().eq(1).find('.first_a').html(data[i]['product_info'].title);
+                    $temp.children().eq(2).children().html(data[i]['product_info'].name);
+                    $temp.children().eq(3).find('.first_span').html(data[i]['product_version'].purprice);
+                    $temp.children().eq(4).children().eq(1).attr("value", data[i].amount);
+                    //删除购物车功能 只能在克隆部分写才能绑定上单击事件
+                    $(".del").click(function (){
+                        $.ajax({
+                            url: "http://127.0.0.1:8080/api/cartDel",
+                            type: "post",
+                            data: {id: 1},
+                            dataType: "json",
+                            success: function () {
+                                alert("删除成功！");
+                            }
+                        })
+                    })
+                    $("#content_bottom_car").children().eq(0).after($temp);
+                }
+            }
+        })
+        $model = $("#cart_content").detach();
+    })
+</script>
+<script>
+    $(function () {
+        // if($("input[name='one']").prop("checked")){
+        //点击结算按钮更新购物车表中的数量和状态
+        $(".pay_text").click(function () {
+            var saveDataAry=[];
+            var data1={id:1,amount:2};
+            var data2={id:2,amount:1};
+            saveDataAry.push(data1);
+            saveDataAry.push(data2);
+            $.ajax({
+                url: "http://127.0.0.1:8080/api/order/generate",
+                type: "post",
+                data:JSON.stringify(saveDataAry),
+                dataType: "json",
+                contentType:'application/json;charset=UTF-8',
+                success: function (data) {
+                    alert(data);
+                }
+            })
+        })
+    })
+</script>
+
 </body>
 </html>

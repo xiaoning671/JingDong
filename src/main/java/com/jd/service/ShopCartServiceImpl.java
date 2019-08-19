@@ -23,6 +23,15 @@ public class ShopCartServiceImpl implements ShopCartService {
         user_shopCartMapper.cartDel(id);
     }
 
+    @Override
+    public Integer getProAdd(List<User_ShopCart> id) {
+        for (User_ShopCart temp: id){
+//            cartMapper.insert(temp);
+            user_shopCartMapper.updateByPrimaryKeySelective(temp);
+        }
+        return 1;
+    }
+
 //    @Override
 //    public void toGenerate(List<Integer> list, Integer user_id) {
 //        user_shopCartMapper.toGenerate(list, user_id);
