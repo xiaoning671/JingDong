@@ -10,10 +10,35 @@
     <result column="discount" jdbcType="VARCHAR" property="discount" />
     <result column="warranty_data" jdbcType="DATE" property="warranty_data" />
     <result column="status_id" jdbcType="INTEGER" property="status_id" />
+    <result column="big" jdbcType="INTEGER" property="big" />
+    <result column="small" jdbcType="INTEGER" property="small" />
+    <association property="sid_big" javaType="com.jd.enity.Product_BigClass">
+      <id column="id" jdbcType="INTEGER" property="id" />
+      <result column="name" jdbcType="VARCHAR" property="name" />
+    </association>
+    <association property="sid_small" javaType="com.jd.enity.Product_SmallClass">
+      <id column="id" jdbcType="INTEGER" property="id" />
+      <result column="name" jdbcType="VARCHAR" property="name" />
+      <result column="bigclass_id" jdbcType="INTEGER" property="bigclass_id" />
+    </association>
   </resultMap>
+<!--  <resultMap id="BigResultMap" type="com.jd.enity.Product_BigClass">-->
+<!--  </resultMap>-->
+<!--  <resultMap id="smallResultMap" type="com.jd.enity.Product_SmallClass">-->
+<!--  </resultMap>-->
   <sql id="Base_Column_List">
-    id, name, title, create_time, min_price, discount, warranty_data, status_id
+    id, name, title, create_time, min_price, discount, warranty_data, status_id,sid_big,sid_small
   </sql>
+
+<!--获取所有对象的子对象没成功，有问题！！！！-->
+  <select id="getAll" resultMap="Product_InfoResultMap">
+<!-- select  p.id, p.name, p.title, p.create_time, p.min_price, p.discount, p.warranty_data, p.status_id,b.id,b.name,s.id,s.name,s.bigclass_id from Product_Info p ,Product_BigClass b,Product_SmallClass s
+  where p.sid_big=s.id and p.sid_small=s.id;-->
+select * from Product_Info p LEFT JOIN Product_BigClass b on  p.sid_big=b.id  LEFT JOIN Product_SmallClass s on p.sid_small=s.id ;
+
+ </select>
+
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="Product_InfoResultMap">
     select 
     <include refid="Base_Column_List" />

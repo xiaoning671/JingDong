@@ -9,6 +9,19 @@
   <sql id="Base_Column_List">
     id, name, bigclass_id
   </sql>
+
+  <select id="Big_have_Small" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select count(id) from Product_SmallClass where bigclass_id=#{class};
+  </select>
+  <select id="Small_in_Info" parameterType="int" >
+    select count(*)
+    from Product_Info where sid_small=(select id from Product_SmallClass where id=#{class};
+   </select>
+
+<select id="getALL" resultMap="BaseResultMap">
+  select * from Product_SmallClass ;
+</select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

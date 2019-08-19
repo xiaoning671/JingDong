@@ -25,6 +25,23 @@ public class Order_Info {
 
     private String remark;
 
+    @Override
+    public String toString() {
+        return "Order_Info{" +
+                "id=" + id +
+                ", user_id=" + user_id +
+                ", address_id=" + address_id +
+                ", pay_id=" + pay_id +
+                ", status_id=" + status_id +
+                ", price=" + price +
+                ", transport_id=" + transport_id +
+                ", create_date=" + create_date +
+                ", pay_date=" + pay_date +
+                ", confirm_date=" + confirm_date +
+                ", remark='" + remark + '\'' +
+                '}';
+    }
+
     public Integer getId() {
         return id;
     }

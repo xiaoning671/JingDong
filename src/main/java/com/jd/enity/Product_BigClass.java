@@ -1,6 +1,7 @@
 package com.jd.enity;
 
 public class Product_BigClass {
+
     private Integer id;
 
     private String name;
@@ -19,5 +20,13 @@ public class Product_BigClass {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Product_BigClass{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

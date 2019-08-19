@@ -1,9 +1,7 @@
 package com.jd.mapper;
 
 import com.jd.enity.User_Info;
-import org.springframework.stereotype.Repository;
 
-@Repository
 public interface User_InfoMapper {
     int checkByName_Password(User_Info record);
 
@@ -12,8 +10,6 @@ public interface User_InfoMapper {
     int insert(User_Info record);
 
     int insertSelective(User_Info record);
-
-    int selectUser(String phone);
 
     User_Info selectByPrimaryKey(Integer id);
 

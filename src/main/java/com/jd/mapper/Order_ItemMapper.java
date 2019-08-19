@@ -1,7 +1,9 @@
 package com.jd.mapper;
 
 import com.jd.enity.Order_Item;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface Order_ItemMapper {
     int deleteByPrimaryKey(Integer id);
 

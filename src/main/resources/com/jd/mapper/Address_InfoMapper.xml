@@ -32,7 +32,7 @@
 
 
   <select id="selectByUserId" resultMap="Address_InfoResultMap" parameterType="java.lang.Integer">
-    select a.id, a.receiver, a.zipcode, a.phone, ap.a_pname, ac.a_cname, aa.a_areaname from Address_Info a, Address_Province ap, Address_City ac, Address_Area aa where a.province = ap.a_pid and a.city = ac.a_cid and a.area = aa.a_areaid and a.user_id = #{id,jdbcType=INTEGER}
+    select a.id, a.receiver, a.zipcode, a.phone, ap.a_pname, ac.a_cname, aa.a_areaname, a.address from Address_Info a, Address_Province ap, Address_City ac, Address_Area aa where a.province = ap.a_pid and a.city = ac.a_cid and a.area = aa.a_areaid and a.user_id = #{id,jdbcType=INTEGER}
   </select>
 
   <sql id="Base_Column_List">

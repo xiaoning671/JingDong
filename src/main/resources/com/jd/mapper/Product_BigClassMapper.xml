@@ -8,20 +8,29 @@
   <sql id="Base_Column_List">
     id, name
   </sql>
+<!--获取所有大类-->
+  <select id="getallBigClass" parameterType="int" resultMap="BaseResultMap">
+    select  * from Product_BigClass
+  </select>
+<!--  插入一个大类-->
+  <insert id="insert" parameterType="com.jd.enity.Product_BigClass">
+    insert into Product_BigClass (id, name)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
+  </insert>
+<!--  删除一个大类-->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from Product_BigClass
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from Product_BigClass
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from Product_BigClass
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.jd.enity.Product_BigClass">
-    insert into Product_BigClass (id, name)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
-  </insert>
   <insert id="insertSelective" parameterType="com.jd.enity.Product_BigClass">
     insert into Product_BigClass
     <trim prefix="(" suffix=")" suffixOverrides=",">

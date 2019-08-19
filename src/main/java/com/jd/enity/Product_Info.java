@@ -1,5 +1,7 @@
 package com.jd.enity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -9,16 +11,47 @@ public class Product_Info {
     private String name;
 
     private String title;
-
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date create_time;
 
     private BigDecimal min_price;
 
     private String discount;
 
-    private Date warranty_data;
+    private String warranty_data;
 
     private Integer status_id;
+
+    public int getBig() {
+        return big;
+    }
+
+    public void setBig(int big) {
+        this.big = big;
+    }
+
+    public int getSmall() {
+        return small;
+    }
+
+    public void setSmall(int small) {
+        this.small = small;
+    }
+
+    private int big;
+    private int small;
+    private Product_BigClass sid_big;
+    private Product_SmallClass sid_small;
+
+    private Product_Images product_images;
+
+    public Product_Images getProduct_images() {
+        return product_images;
+    }
+
+    public void setProduct_images(Product_Images product_images) {
+        this.product_images = product_images;
+    }
 
     @Override
     public String toString() {
@@ -29,8 +62,13 @@ public class Product_Info {
                 ", create_time=" + create_time +
                 ", min_price=" + min_price +
                 ", discount='" + discount + '\'' +
-                ", warranty_data=" + warranty_data +
+                ", warranty_data='" + warranty_data + '\'' +
                 ", status_id=" + status_id +
+                ", big=" + big +
+                ", small=" + small +
+                ", sid_big=" + sid_big +
+                ", sid_small=" + sid_small +
+                ", product_images=" + product_images +
                 '}';
     }
 
@@ -82,11 +120,11 @@ public class Product_Info {
         this.discount = discount == null ? null : discount.trim();
     }
 
-    public Date getWarranty_data() {
+    public String getWarranty_data() {
         return warranty_data;
     }
 
-    public void setWarranty_data(Date warranty_data) {
+    public void setWarranty_data(String warranty_data) {
         this.warranty_data = warranty_data;
     }
 

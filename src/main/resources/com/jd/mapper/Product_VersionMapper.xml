@@ -20,12 +20,22 @@
     <result column="discount" jdbcType="VARCHAR" property="discount" />
     <result column="warranty_data" jdbcType="DATE" property="warranty_data" />
     <result column="status_id" jdbcType="INTEGER" property="status_id" />
+    <association property="product_images" resultMap="Product_ImagesResultMap"></association>
   </resultMap>
+
+  <resultMap id="Product_ImagesResultMap" type="com.jd.enity.Product_Images">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="product_id" jdbcType="INTEGER" property="product_id" />
+    <result column="version_id" jdbcType="INTEGER" property="version_id" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="descrip" jdbcType="VARCHAR" property="descrip" />
+  </resultMap>
+
   <sql id="Base_Column_List">
     id, name, product_id, price, stock, purprice, weight
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="Product_VersionResultMap">
-    select pv.id, pv.name, pv.price, pv.weight, p.id, p.name, p.title from Product_Version pv, Product_Info p where pv.id = #{id,jdbcType=INTEGER} and pv.product_id = p.id
+    select pv.id, pv.name, pv.price, pv.weight, p.id, p.name, p.title, pi.url from Product_Version pv, Product_Info p, Product_Images pi where pv.id = #{id,jdbcType=INTEGER} and pv.product_id = p.id and pi.product_id = p.id
   </select>
 
 

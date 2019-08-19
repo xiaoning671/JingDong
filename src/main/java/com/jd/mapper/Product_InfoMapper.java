@@ -1,8 +1,13 @@
 package com.jd.mapper;
 
 import com.jd.enity.Product_Info;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+@Repository
 public interface Product_InfoMapper {
+    List<Product_Info> getAll();
     int deleteByPrimaryKey(Integer id);
 
     int insert(Product_Info record);
