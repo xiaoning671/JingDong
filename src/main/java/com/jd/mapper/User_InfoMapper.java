@@ -9,7 +9,7 @@ import java.util.List;
 public interface User_InfoMapper {
     List<User_Info> getAllUser();
     User_Info checkByName_Password(User_Info record);
-
+    int have(User_Info record);
     int deleteByPrimaryKey(Integer id);
 
     int insert(User_Info record);

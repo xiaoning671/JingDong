@@ -163,15 +163,6 @@ $(function () {
         $("#disp_produce_add").css("display","inline");
     })         // 添加 提交数据 被按下
                 $("input[name=add_pro]").click(function () {
-                    $.big=function () {
-                        var id=$("#produce_alter_bigclass").val();
-                        var name="";
-                    }
-                    $.small=function () {
-                        var id=$("#produce_alter_smallclass").val();
-                        var name="";
-                        var bigclass="";
-                    }
                   $.ajax({
                       url: "http://localhost:8080/backstage_add_ProductInfo",
                       type: "post",
@@ -183,12 +174,8 @@ $(function () {
                           discount: $(this).parent().parent().prev().children(":eq(3)").children().val(),
                           warranty_data: $(this).parent().parent().prev().children(":eq(4)").children().val(),
                           status_id: $(this).parent().parent().prev().children(":eq(5)").children().val(),
-                          sid_big:{
-                               id:$("#produce_alter_bigclass").val(),
-                          },
-                          sid_small:{
-                               id:$("#produce_alter_smallclass").val(),
-                          }
+                          big: $(this).parent().parent().prev().children(":eq(6)").children().val(),
+                          small:$(this).parent().parent().prev().children(":eq(7)").children().val(),
                       },
                       success: function (data) {
                           alert(data);
@@ -232,6 +219,9 @@ $(function () {
         $("#disp_produce_alter").css("display","inline");
     })
     $("input[name=alt_product]").click(function () {
+    //     alert(  sid_big: $(this).parent().parent().prev().children(":eq(6)").children().val(),
+    //         sid_small: $(this).parent().parent().prev().children(":eq(7)").children().val(),
+    // )
         $.ajax({
             url: "http://localhost:8080/backstage_alter_ProductInfo",
             type: "post",

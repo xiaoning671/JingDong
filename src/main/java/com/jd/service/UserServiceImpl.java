@@ -18,9 +18,10 @@ public class UserServiceImpl implements UserService {
         if(own==null){
             own=new User_Info();
             own.setId(-1);
-//            System.out.println("对不起，用户找不到");
+            System.out.println("对不起，用户找不到");
+            return own;
         }
-        return own;
+        return own ;
     }
 
     @Override
