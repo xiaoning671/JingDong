@@ -105,7 +105,7 @@
             <a href="#"><span style="margin-right: 50px; line-height: 40px; float: right;" class="bluefont">返回修改购物车</span></a>
         </div>
         <div class="express-list">
-            <div class="express" id="list-left">
+            <div class="express" id="list-left" >
                 <div class="kdgs">
                     <div class="listhead">
                         <span class="list-blackfont">配送方式</span>
@@ -151,7 +151,7 @@
                     <span style="margin-left: 10px; font-size: 14px; color: #999999; ">7.777kg</span>
                 </div>
             </div>
-            <div class="product" id="list-right">
+            <div class="product" id="list-right" >
                 <div style="font-weight: bold; margin-left: 15px; font-size: 13px; margin-top: 15px">商家：京东自营</div>
                 <div class="product-goods" id="product-info" v-for="product in products" >
                     <img id="product-image" height="140px" style="float: left; padding: 30px 30px 20px 20px" src="https://img10.360buyimg.com/cms/s80x80_jfs/t1/68251/30/6535/298302/5d4b8bb8E86020fc2/de5e39a2420c3f30.jpg">
@@ -785,7 +785,6 @@
                 })
             }
         });
-        alert("取用户地址信息");
         $.ajax({
             url:"http://127.0.0.1:8080/api/order/commit/address",
             type:"post",
@@ -809,24 +808,20 @@
                 })
             }
         });
-        alert("取购物车数据...");
         $.ajax({
             url:"http://127.0.0.1:8080/api/order/commit/info",
             type:"post",
             dataType:"json",
             data:{userid:userid},
             success:function (data) {
-
                 temp_num = data.length;
                 temp_cart = data;
-                temp_num = 5;
                 //修改页面产品列表块高度
                 if(temp_num > 2){
                     var m = temp_num * 130 + 20;
                     $("#list-left").css("height","m");
                     $("#list-right").css("height","m");
                 }
-
                 var data3 = new Vue({
                     el:'#product-info',
                     data:{products:[]},
@@ -834,7 +829,6 @@
                         this.products = data;
                     },
                 })
-
                 for(var i = 0; i<data.length; i=i+1){
                     temp_count = temp_count + parseInt(data[i].amount);
                     temp_totalprice = temp_totalprice + parseFloat(parseInt(data[i].amount)*parseFloat(data[i].product_version.price));
@@ -853,6 +847,9 @@
                     el:'#warePriceId',
                     data:{totalcost:temp_totalprice},
                 })
+            },
+            error:function () {
+                alert("系统错误！");
             }
         })
     })
