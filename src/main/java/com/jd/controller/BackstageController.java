@@ -37,6 +37,12 @@ public class BackstageController {
     public boolean del_firstBigClass(int del){
         return product_bigClassService.del_firstBigClass(del);
     }
+    @RequestMapping("/backstage_alter_firstBigClass")  //修改
+    public int alter_firstBigClass(Product_BigClass a_kind){
+        System.out.println(a_kind);
+        return  product_bigClassService.alter_firstBigClass(a_kind);
+
+    }
     //小类
     @RequestMapping("/backstage_getSmallClass")
     public List<Product_SmallClass> getAllSmallClass(){
@@ -89,6 +95,5 @@ public class BackstageController {
     @RequestMapping("/backstage_del_User")
     public boolean del_User(int del){
         return userService.del_user(del);
-
     }
 }

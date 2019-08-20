@@ -5,6 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 @Repository
+import java.util.List;
+
+@Repository
 public interface User_InfoMapper {
     User_Info checkByName_Password(User_Info record);
 
@@ -19,7 +22,4 @@ public interface User_InfoMapper {
     int updateByPrimaryKeySelective(User_Info record);
 
     int updateByPrimaryKey(User_Info record);
-    List<User_Info> getAllUser();
-    List<User_Info> selectUserid(String email);
-    int updateaddress_id(int id,String phone);
 }

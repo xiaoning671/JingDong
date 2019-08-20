@@ -17,7 +17,9 @@
     from Product_Images
     where id = #{id,jdbcType=INTEGER}
   </select>
-
+  <select id="getImgByProId" parameterType="java.lang.Integer" resultMap="Product_ImagesResultMap">
+  select * from Product_Images pi where pi.product_id = #{id,jdbcType=INTEGER}
+</select>
 
 
 

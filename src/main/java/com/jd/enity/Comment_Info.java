@@ -15,6 +15,26 @@ public class Comment_Info {
 
     private String content;
 
+    private Product_Info product_info;
+
+    private User_Info user_info;
+
+    public Product_Info getProduct_info() {
+        return product_info;
+    }
+
+    public void setProduct_info(Product_Info product_info) {
+        this.product_info = product_info;
+    }
+
+    public User_Info getUser_info() {
+        return user_info;
+    }
+
+    public void setUser_info(User_Info user_info) {
+        this.user_info = user_info;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -61,5 +81,19 @@ public class Comment_Info {
 
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Comment_Info{" +
+                "id=" + id +
+                ", user_id=" + user_id +
+                ", product_id=" + product_id +
+                ", create_date=" + create_date +
+                ", score=" + score +
+                ", content='" + content + '\'' +
+                ", product_info=" + product_info +
+                ", user_info=" + user_info +
+                '}';
     }
 }

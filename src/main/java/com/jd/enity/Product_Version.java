@@ -9,6 +9,8 @@ public class Product_Version {
 
     private Product_Info product_info;
 
+    private Integer product_id ;
+
     private BigDecimal price;
 
     private Integer stock;
@@ -28,6 +30,14 @@ public class Product_Version {
                 ", purprice=" + purprice +
                 ", weight=" + weight +
                 '}';
+    }
+
+    public Integer getProduct_id() {
+        return product_id;
+    }
+
+    public void setProduct_id(Integer product_id) {
+        this.product_id = product_id;
     }
 
     public Product_Info getProduct_info() {

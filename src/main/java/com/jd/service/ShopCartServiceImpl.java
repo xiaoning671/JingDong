@@ -32,6 +32,10 @@ public class ShopCartServiceImpl implements ShopCartService {
         return 1;
     }
 
+    @Override
+    public int insertShopCart(User_ShopCart record) {
+        return user_shopCartMapper.insertSelective(record);
+    }
 //    @Override
 //    public void toGenerate(List<Integer> list, Integer user_id) {
 //        user_shopCartMapper.toGenerate(list, user_id);

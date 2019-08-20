@@ -76,7 +76,11 @@
   <delete id="deleteShopCartByStatus" parameterType="java.lang.Integer">
     delete from User_ShopCart where id = #{id,jdbcType=INTEGER} and status = 1
   </delete>
-
+  <insert id="insertShopCart" parameterType="com.jd.enity.User_ShopCart">
+    insert into User_ShopCart (user_id, produce_id, pversion_id, amount)
+    values (#{user_id,jdbcType=INTEGER}, #{produce_id,jdbcType=INTEGER},
+      #{pversion_id,jdbcType=INTEGER}, #{amount,jdbcType=INTEGER})
+  </insert>
 
 
 
