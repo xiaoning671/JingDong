@@ -7,11 +7,13 @@
 <!--    <link rel="stylesheet" href="../css/base.css">-->
     <script src="../script/jquery-3.4.1.min.js"></script>
     <script>
-var provinceindex,cityindex,areaindex;
+var provinceindex,cityindex,areaindex,user_id;
 
     $(function () {
-
       var phone=0;
+      $("#form-phone").click(function () {
+          $("#tex_p").hide()
+      })
     // $(".form-item-getcode").click(function () {
     //     if(phone=1)
     //     {
@@ -58,28 +60,10 @@ $("#step1-next").click(function () {
             var pass_check = document.getElementById('password_check').value;
             if (pass == pass_check) {
                 $.ajax({
-                    url: "http://localhost:8080/registered",
+                    url: "http://127.0.0.1:8080/insertAddress_Info",
                     type: "post",
                     data: {
-                        'name': $("input[name='user']").val(),
-                        'password': $("input[name='password']").val(),
-                        'email': $("input[name='email']").val(),
-                        'phone': $("input[name='phone']").val(),
-                        'idcard': $("input[name='id_card']").val(),
-                        'sex': 'male',
-                        'vip': 0,
-                        'status': 1,
-                        'defaultaddress': 1,
-                    },
-                    dataType: "json",
-                    success: function (result) {
-
-                    }
-                })
-                $.ajax({
-                    url: "http://localhost:8080/insertAddress_Info",
-                    type: "post",
-                    data: {
+                        'user_id':user_id,
                         'receiver': $("input[name='user']").val(),
                         'zipcode': 0,
                         'email': $("input[name='email']").val(),
@@ -93,12 +77,31 @@ $("#step1-next").click(function () {
                     success: function (data) {
                         if (data>0) {
                             alert("登录成功！欢迎")
-                            window.location.replace("http://localhost:8080/html/login.html")
+                            window.location.replace("http://127.0.0.1:8080/html/login.html")
                         } else {
                             alert("登录失败")
                             $("#mistake").css("display", "inline"); //显示错误信息
 
                         }
+                    }
+                })
+                $.ajax({
+                    url: "http://127.0.0.1:8080/registered",
+                    type: "post",
+                    data: {
+                        'name': $("input[name='user']").val(),
+                        'password': $("input[name='password']").val(),
+                        'email': $("input[name='email']").val(),
+                        'phone': $("input[name='phone']").val(),
+                        'idcard': $("input[name='id_card']").val(),
+                        'sex': $("input[name='sex']").val(),
+                        'vip': 0,
+                        'status': 1,
+                        'defaultaddress': 1,
+                    },
+                    dataType: "json",
+                    success: function (result) {
+
                     }
                 })
             }
@@ -107,7 +110,7 @@ $("#step1-next").click(function () {
 })
     function showAddress() {
         $.ajax({
-            url:"http://localhost:8080/getProvince",
+            url:"http://127.0.0.1:8080/getProvince",
             type:"post",
             dataType:"json",
             success:function (data) {
@@ -127,7 +130,7 @@ $("#step1-next").click(function () {
         provinceindex=province.replace(/[^0-9]/g,"");
         $("#citylist").empty();
         $.ajax({
-            url:"http://localhost:8080/getCity",
+            url:"http://127.0.0.1:8080/getCity",
             type:"post",
             dataType:"json",
             data:{
@@ -149,7 +152,7 @@ $("#step1-next").click(function () {
         cityindex=citys.replace(/[^0-9]/g,"");
         $("#arealist").empty();
         $.ajax({
-            url:"http://localhost:8080/getArea",
+            url:"http://127.0.0.1:8080/getArea",
             type:"post",
             dataType:"json",
             data:{
@@ -177,32 +180,18 @@ $("#step1-next").click(function () {
     <div class="logo-con w clearfix">
         <a href="https://www.jd.com" class="logo "></a>
         <div class="logo-title">欢迎注册</div>
-        <div class="have-account">已有账号？ <a href="http://localhost:8080/html/login.html">请登录&gt;</a></div>
+        <div class="have-account">已有账号？ <a href="http://127.0.0.1:8080/html/login.html">请登录&gt;</a></div>
     </div>
 </div>
 <div class="contaner w">
-    <div class="propress-bar">
-        <div class="pro-step cur-step ">
-            <span class="step-index">1</span>
-            <p class="step-desc">验证手机号</p>
-        </div>
-        <div class="pro-lines  pro-line1"></div>
-        <div class="pro-step pro-step2 person-pro-step2  ">
-            <span class="step-index">2</span>
-            <p class="step-desc">填写账号信息</p>
-        </div>
-        <div class="pro-lines "></div>
-        <div class="pro-step pro-step3 person-pro-step3  ">
-            <span class="step-index">3</span>
-            <p class="step-desc">注册成功</p>
-        </div>
+    <div class="propress-bar" >
     </div>
     <div id="step1-wrap">
         <div class="item-phone-wrap">
             <div class="form-item form-item-phone">
                 <label class="select-country" id="select-country" country_id="0086" style="border-top: 1px solid rgb(221, 221, 221); border-right: none rgb(221, 221, 221); border-bottom: 1px solid rgb(221, 221, 221); border-left: 1px solid rgb(221, 221, 221); border-image: initial;">中国 0086<a href="javascript:void(0) " class="arrow"></a></label>
                 <div class="item-input-wrap" style="border: 1px solid rgb(221, 221, 221);">
-                    <txt style="position: absolute; z-index: 2; line-height: 46px; margin-left: 20px; margin-top: 1px; font-size: 14px; font-family: system-ui; color: rgb(204, 204, 204); display: inline;">建议使用常用手机号</txt><input type="text" id="form-phone" maxlength="11" name="phone" class="field" placeholder=" " autocomplete="off" default="<i class='i-def'></i>验证完成后，你可以使用该手机登录或找回密码">
+                    <txt id="tex_p" style="position: absolute; z-index: 2; line-height: 46px; margin-left: 20px; margin-top: 1px; font-size: 14px; font-family: system-ui; color: rgb(204, 204, 204); display: inline;">建议使用常用手机号</txt><input type="text" id="form-phone" maxlength="11" name="phone1" class="field" placeholder=" " autocomplete="off" default="<i class='i-def'></i>验证完成后，你可以使用该手机登录或找回密码">
                     <i class="i-status"></i>
                     <i class="i-cancel"></i>
                 </div>
@@ -267,30 +256,34 @@ $("#step1-next").click(function () {
         </div>
     </div>
     <div id="reg_1">
-           <form name="user_Info" action="http://localhost:8080/html/login.html" >
-                <li>账户名：   <input type="text" name="user" required="required" ></li>
-                <li>请设置密码：<input type="password" name="password" id="password" required="required" ></li>
-                <li>请确认密码：<input type="password" name="password_check" id="password_check" required="required"> </li>
-                <li>邮箱地址：  <input type="email" name="email" required="required"></li>
-                <li>手机号码：  <input type="text" name="phone" required="required" pattern="((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)"></li>
-                <li>卡号:      <input type="text" name="id_card" required="required"></li>
-                <li>请选择性别： <input type="radio" name="sex" value="female">女
-                               <input type="radio" name="sex" value="male">男</li>
-                <li>生日日期:    <input type="date" name="birthday" required="required"></li>
-               <li><div>地址：省份：
-                   <select id="provincelist" autocomplete="off" onchange="showCity();">
-                   </select>
-                   城市：
-                   <select id="citylist" autocomplete="off" onchange="showArea();">
-                   </select>
-                   区：
-                   <select id="arealist" autocomplete="off" onchange="showinfo();">
-                   </select>
-               </div>
-                   具体位置:<textarea name="address_info" id="address_info" rows="5" cols="72"></textarea>
-               </li>
-               <input type="submit" value="注册"  id="sub">
-            </form>
+        <div id="insert_logo"></div>
+<div id="reg_12">
+    <form name="user_Info" action="http://127.0.0.1:8080/html/login.html" >
+        <label style="color: red">账户名:</label><input type="text" name="user" required="required" ><br/>
+        <label style="color: red">请设置密码:</label><input type="password" name="password" id="password" required="required" ><br/>
+        <label style="color: red">请确认密码:</label><input type="password" name="password_check" id="password_check" required="required"> <br/>
+        <label style="color: red">邮箱地址:</label><input type="email" name="email" required="required"><br/>
+        <label style="color: red">手机号码:  </label><input type="text" name="phone" required="required" pattern="((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)"><br/>
+        <label style="color: red">卡号:    </label> <input type="text" name="id_card" required="required"><br/>
+        <label style="color: red">请选择性别:</label><input type="radio"  name="sex" value="female">女
+        <input type="radio"  name="sex" value="male">男<br/>
+        <label style="color: red">生日日期:</label><input type="date" name="birthday" required="required"><br/>
+        <p><div>地址：省份：
+        <select id="provincelist" autocomplete="off" onchange="showCity();">
+        </select>
+        城市：
+        <select id="citylist" autocomplete="off" onchange="showArea();">
+        </select>
+        区：
+        <select id="arealist" autocomplete="off" onchange="showinfo();">
+        </select>
+    </div>
+        具体位置:<textarea name="address_info" id="address_info" rows="5" cols="72"></textarea>
+        </p>
+        <input type="submit" value="注册"  id="sub">
+    </form>
+</div>
+
     </div>
 </div>
 

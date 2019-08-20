@@ -49,11 +49,11 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.jd.enity.Address_Info">
-    insert into Address_Info ( receiver,
+    insert into Address_Info (user_id, receiver,
       zipcode, phone, province, 
       city, area, address
       )
-    values (#{receiver,jdbcType=VARCHAR},
+    values (#{user_id,jdbcType=INTEGER},#{receiver,jdbcType=VARCHAR},
       #{zipcode,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{province,jdbcType=INTEGER},
       #{city,jdbcType=INTEGER}, #{area,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}
       )
@@ -162,6 +162,12 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
+  <update id="updataUserid">
+    update Address_Info set user_id = #{param1,jdbcType=INTEGER} where phone = #{param2,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAddress" parameterType="java.lang.String" resultMap="Address_InfoResultMap">
+    select * from Address_Info where phone = #{phone,jdbcType=VARCHAR}
+  </select>
 
 
 <!--  <resultMap id="Address_InfoResultMap" type="com.jd.enity.Address_Info">-->

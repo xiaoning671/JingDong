@@ -1,6 +1,7 @@
 package com.jd.service;
 
 import com.jd.enity.User_Info;
+import com.jd.mapper.Address_InfoMapper;
 import com.jd.mapper.User_InfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,8 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Autowired
     User_InfoMapper user_infoMapper;
+    @Autowired
+    Address_InfoMapper address_infoMapper;
     @Override
     public User_Info checkUser(User_Info user) {
 
@@ -46,20 +49,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean insertUser(User_Info user) {
+    public int insertUser(User_Info user) {
         int a=user_infoMapper.insert(user);
+        List<User_Info> b=user_infoMapper.selectUserid(user.getEmail());
+
         if(a>0)
         {
-            return true;
+        int d=address_infoMapper.updataUserid(b.get(0).getId(),b.get(0).getPhone());
+            return b.get(0).getId();
         }
        else{
-           return false;
+           return -1;
         }
     }
 
-    @Override
-    public int selectUserid(String email) {
-        return 0;
-    }
+
 
 }
