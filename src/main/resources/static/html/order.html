@@ -882,13 +882,10 @@
             dataType:"json",
             contentType : "application/json",
             success:function (data) {
-                alert("生成订单...");
                 if(data != null){
-                    alert("订单生成成功，请尽快支付！订单号为");
-                    alert(data);
+                    alert("订单生成成功，请尽快支付！订单号为" + data);
                     temp_orderid = data;
                     for(var i=0; i<temp_cart.length; i++){
-                        alert("生成订单物品...");
                         var m = parseFloat(parseInt(temp_cart[i].amount)*parseFloat(temp_cart[i].product_version.price));
                         var orderitems = new orderitem(temp_orderid,temp_cart[i].product_version.product_info.id,temp_cart[i].product_version.id,temp_cart[i].amount,m);
                         $.ajax({
@@ -898,8 +895,8 @@
                             dataType:"json",
                             contentType : "application/json",
                             success:function (data) {
+                                alert("提交订单成功！");
                                 if(data == true){
-                                    alert("订单物品正常生成！");
                                     //删除提交的购物车行
                                     $.ajax({
                                         url:"http://127.0.0.1:8080/api/order/deleteShopCart",
@@ -908,16 +905,15 @@
                                         dataType:"json",
                                         success:function (data) {
                                             if(data == temp_cart.length){
-                                                alert("提交订单操作成功！");
+                                                alert("提交订单成功！");
                                             }else{
-                                                alert("清理购物车失败！");
                                             }
                                         }
                                     })
                                 }else{
                                     alert("系统错误！");
                                 }
-                                alert("订单完成！");
+                                window.location.href="http://127.0.0.1:8080/html/search.html";
                             }
                         })
                     }

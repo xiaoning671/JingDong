@@ -40,10 +40,9 @@ $(function () {
                     })
                  });
                  $(".revise_bigclass").click(function () { //新增加的项目中的 修改 不好使***
-                     alert("yes");
                      var $rev=$("#disp_pro_add1 tbody tr").clone();
                      $rev.children(":eq(3)").children().click(function () {
-                         alert("clear");
+
                          $(this).parent().prev().prev().prev().children().val("");
                          $(this).parent().prev().prev().children().val("");
                      })

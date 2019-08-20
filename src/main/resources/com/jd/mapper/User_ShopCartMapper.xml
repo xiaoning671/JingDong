@@ -46,12 +46,13 @@
      select s.id, p.title,v.name,v.purprice,s.amount from User_Info u, Product_Info p,Product_Version v,User_ShopCart s
      where s.user_id = u.id and s.produce_id = p.id and s.pversion_id = v.id and s.user_id = #{user_id}
   </select>
-  <delete id="cartDel" parameterType="java.lang.Integer">
-    delete from User_ShopCart where id = #{id}
+  <delete id="deleteShopCart" parameterType="java.lang.Integer">
+    delete from User_ShopCart where userid = #{userid} and status = 1;
   </delete>
   <update id="updateByPrimaryKeySelective" parameterType="com.jd.enity.User_ShopCart" >
     update User_ShopCart set amount = #{amount} ,status = 1 where id = #{id}
   </update>
+
 
 
 

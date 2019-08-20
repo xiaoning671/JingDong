@@ -552,7 +552,7 @@
             this.amount = amount;
         }
         $("#InitCartUrl").click(function () {
-            var shopInfos = new shopInfo(user_id,produce_id,pversion_id,amount);
+            var shopInfos = new shopInfo(1,produce_id,pversion_id,amount);
             $.ajax({
                 url:"/insertShopCart",
                 dataType:"json",
