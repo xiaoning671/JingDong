@@ -45,6 +45,7 @@ public class RegController {
     @RequestMapping("/insertAddress_Info")
     public int insertAddress_Info(Address_Info address_info)
     {
+
         return address_infoService.insertAddress_info(address_info);
     }
 }

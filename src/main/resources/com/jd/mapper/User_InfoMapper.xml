@@ -42,8 +42,8 @@
     from User_Info
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <select id="selectUser" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select id from User_Info where email = #{email,jdbcType=VARCHAR}
+  <select id="selectUserid" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from User_Info where email = #{email,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from User_Info
@@ -207,7 +207,9 @@
 --         select * from User_Info u, Address_Info a, Address_Province ap, Address_City ac, Address_Area aa where u.defaultaddress = a.id and a.province = ap.a_pid and a.city = ac.a_cid and a.area = aa.a_areaid;
     </select>
 
-
+  <update id="updateaddress_id" >
+    update User_Info set defaultaddress = #{param1,jdbcType=INTEGER} where phone = #{param2,jdbcType=VARCHAR}
+  </update>
 
 
 

@@ -19,10 +19,11 @@ public class LoginController {
     }
 
     @RequestMapping("/registered")
-    public boolean registered(User_Info user){
+    public int registered(User_Info user){
 
         System.out.println("帅气");
-        boolean a=userService.insertUser(user);
+        int a=userService.insertUser(user);
+
         return a;
     }
 }
